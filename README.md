@@ -1,2 +1,3 @@
-# COSC612
-Team 3
+# [Project Name]
+Team Members:
+ - Vincent Gruse
