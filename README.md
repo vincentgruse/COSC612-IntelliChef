@@ -1,4 +1,4 @@
-# [IntelliChef]
+# IntelliChef
 Team Members:
  - Vincent Gruse
  - Rahal Danthanarayana
