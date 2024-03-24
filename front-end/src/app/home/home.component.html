@@ -1,0 +1,43 @@
+<body>
+<!-- Main container -->
+<div class="container">
+  <h1>IntelliChef</h1> <!-- Title of the application -->
+  <h2>Start typing ingredients...</h2> <!-- Subtitle prompting user to start typing ingredients -->
+
+  <!-- Input container for adding ingredients -->
+  <div class="input-container">
+    <!-- Input field for entering new ingredients -->
+    <input type="text" placeholder="Add an ingredient..." [(ngModel)]="newIngredient">
+
+    <!-- Button to add the ingredient -->
+    <div class="search-button" (click)="addIngredient()">
+      <img src="assets/search-icon.png" alt="Add" class="search-icon">
+    </div>
+  </div>
+</div>
+
+<!-- Container for displaying the list of ingredients -->
+<div class="list-container">
+  <ul>
+    <!-- Loop through each ingredient in the ingredients array -->
+    <li *ngFor="let ingredient of ingredients; index as i" class="list-item">
+      <!-- Display the name of the ingredient -->
+      <span class="ingredient-text">{{ ingredient.name }}</span>
+
+      <!-- Button to delete the ingredient -->
+      <div class="delete-button" (click)="deleteIngredient(i)">
+        <img src="assets/delete-icon.png" alt="Delete" class="delete-icon">
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- Container for the submit button -->
+<div class="submit-container">
+  <!-- Submit button to start cooking -->
+  <button type="submit" class="submit-button">
+    <img src="assets/submit-icon.png" alt="Submit" class="submit-icon">
+    Start Cooking
+  </button>
+</div>
+</body>
