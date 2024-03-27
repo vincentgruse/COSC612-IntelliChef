@@ -7,10 +7,10 @@
   <!-- Input container for adding ingredients -->
   <div class="input-container">
     <!-- Input field for entering new ingredients -->
-    <input type="text" placeholder="Add an ingredient..." [(ngModel)]="newIngredient">
+    <input type="text" placeholder="Add an ingredient..." [(ngModel)]="newIngredient" (keyup.enter)="addIngredient()">
 
     <!-- Button to add the ingredient -->
-    <div class="search-button" (click)="addIngredient()">
+    <div type="submit" class="search-button" (click)="addIngredient()">
       <img src="assets/search-icon.png" alt="Add" class="search-icon">
     </div>
   </div>
@@ -35,7 +35,7 @@
 <!-- Container for the submit button -->
 <div class="submit-container">
   <!-- Submit button to start cooking -->
-  <button type="submit" class="submit-button">
+  <button type="button" [routerLink]="['ingredient-list']" class="submit-button">
     <img src="assets/submit-icon.png" alt="Submit" class="submit-icon">
     Start Cooking
   </button>
