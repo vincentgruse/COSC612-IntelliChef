@@ -1,8 +1,7 @@
-<body>
 <!-- Main container -->
 <div class="container">
-  <h1>IntelliChef</h1> <!-- Title of the application -->
-  <h2>Start typing ingredients...</h2> <!-- Subtitle prompting user to start typing ingredients -->
+  <h1>IntelliChef</h1>
+  <h2>Start typing ingredients...</h2>
 
   <!-- Input container for adding ingredients -->
   <div class="input-container">
@@ -35,9 +34,8 @@
 <!-- Container for the submit button -->
 <div class="submit-container">
   <!-- Submit button to start cooking -->
-  <button type="button" [routerLink]="['ingredient-list']" class="submit-button">
+  <button type="button" (click)="goToRecipes()" class="submit-button">
     <img src="assets/submit-icon.png" alt="Submit" class="submit-icon">
     Start Cooking
   </button>
 </div>
-</body>

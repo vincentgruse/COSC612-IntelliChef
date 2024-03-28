@@ -1,0 +1,9 @@
+<p>recipes works!</p>
+<div class="container">
+  <h1>Recipes</h1>
+  <div *ngIf="recipes.length === 0" class="no-recipes-message">No recipes available.</div>
+  <div *ngFor="let recipe of recipes" class="recipe-item">
+    <h2>{{ recipe.id }}</h2>
+    <p>{{ recipe.name }}</p>
+  </div>
+</div>
