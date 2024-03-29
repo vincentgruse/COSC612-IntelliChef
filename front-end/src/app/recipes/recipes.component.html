@@ -5,9 +5,7 @@
 <h1>Ingredients</h1>
 <div class="ingredient-list">
   <div *ngIf="ingredients.length === 0" class="no-ingredients-message">No ingredients found.</div>
-  <!-- Loop through each ingredient in the ingredients array -->
   <div *ngFor="let ingredient of ingredients; index as i" class="list-item">
-    <!-- Display the name of the ingredient -->
     <span class="ingredient-text">{{ ingredient.name }}</span>
   </div>
 </div>
@@ -15,12 +13,11 @@
 <h1>Recipes</h1>
 <div class="recipe-container">
   <div *ngIf="recipes.length === 0" class="no-recipes-message">No recipes available.</div>
-    <div *ngFor="let recipe of recipes" class="recipe-item">
-      <div class="recipe-card">
-        <h2 class="recipe-name">{{ recipe.name }}</h2>
-        <img [src]="recipe.image" alt="Recipe Image" class="recipe-image">
-        <p class="recipe-description">{{ recipe.description }}</p>
-      </div>
+  <div *ngFor="let recipe of recipes" class="recipe-item">
+    <div class="recipe-card">
+      <h2 class="recipe-name">{{ recipe.name }}</h2>
+      <img [src]="recipe.image" alt="Recipe Image" class="recipe-image">
+      <p class="recipe-description">{{ recipe.description }}</p>
+    </div>
   </div>
 </div>
-
