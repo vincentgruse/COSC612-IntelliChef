@@ -1,4 +1,5 @@
 .back-button {
+  position: fixed;
   font-family: inherit;
   font-size: 30px;
   background-color: #98FF98;
