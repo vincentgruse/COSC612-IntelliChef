@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit{
     private ingredientService: IngredientService,
     private router: Router
   ) {
-    this.ingredients = this.ingredientService.getIngredients();
   }
 
   ngOnInit() {
