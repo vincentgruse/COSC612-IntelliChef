@@ -7,14 +7,7 @@ import { Ingredient } from '../models/ingredient';
 export class IngredientService {
   private ingredients: Ingredient[] = []; // Array of Ingredient objects
 
-  constructor() {
-    // Initialize ingredients array with sample data
-    this.ingredients = [
-      { name: 'Ingredient 1' },
-      { name: 'Ingredient 2' },
-      // Add more sample ingredients as needed
-    ];
-  }
+  constructor() { }
 
   // Create operation
   addIngredient(ingredient: Ingredient) {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { IngredientService } from '../services/ingredient.service';
 import { Router } from "@angular/router";
 import { Ingredient } from "../models/ingredient";
@@ -8,7 +8,7 @@ import { Ingredient } from "../models/ingredient";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
   ingredients: Ingredient[] = [];
   newIngredient: string = '';
 
@@ -17,6 +17,11 @@ export class HomeComponent {
     private router: Router
   ) {
     this.ingredients = this.ingredientService.getIngredients();
+  }
+
+  ngOnInit() {
+    // Clear local storage when HomeComponent initializes
+    localStorage.removeItem("ingredients");
   }
 
   addIngredient() {
