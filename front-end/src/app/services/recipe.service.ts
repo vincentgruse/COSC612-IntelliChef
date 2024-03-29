@@ -7,7 +7,7 @@ import { Recipe } from '../models/recipe';
   providedIn: 'root'
 })
 export class RecipeService {
-  private apiURL = 'http://localhost:3001'; // Assuming backend server URL
+  private apiURL = 'http://localhost:8000'; // Assuming backend server URL
 
   constructor(private http: HttpClient) {}
 
