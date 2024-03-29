@@ -5,24 +5,33 @@ import { Ingredient } from '../models/ingredient';
   providedIn: 'root'
 })
 export class IngredientService {
-  private ingredients: Ingredient[] = []; // Array of Ingredient objects
+  private localStorageKey = 'ingredients';
 
   constructor() { }
 
   // Create operation
   addIngredient(ingredient: Ingredient) {
-    this.ingredients.push(ingredient);
+    const ingredients = this.getIngredients();
+    ingredients.push(ingredient);
+    this.saveIngredients(ingredients);
   }
 
   // Read operation
   getIngredients(): Ingredient[] {
-    return this.ingredients;
+    const storedIngredients = localStorage.getItem(this.localStorageKey);
+    return storedIngredients ? JSON.parse(storedIngredients) : [];
   }
 
   // Delete operation
   deleteIngredient(index: number) {
-    if (index >= 0 && index < this.ingredients.length) {
-      this.ingredients.splice(index, 1);
+    const ingredients = this.getIngredients();
+    if (index >= 0 && index < ingredients.length) {
+      ingredients.splice(index, 1);
+      this.saveIngredients(ingredients);
     }
+  }
+
+  private saveIngredients(ingredients: Ingredient[]) {
+    localStorage.setItem(this.localStorageKey, JSON.stringify(ingredients));
   }
 }
