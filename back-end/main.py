@@ -1,7 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from routes import receipyRoute
 
 app = FastAPI()
+app.include_router(receipyRoute.router)
+
 origins = ["*"]
 
 app.add_middleware(
@@ -13,20 +16,6 @@ app.add_middleware(
 )
 
 
-class Receipt:
-    def __init__(self, name, id):
-        self.name = name
-        self.id = id
-
-
-receipt_array = []
-
-receipt_array.append(Receipt('Akash', 2))
-receipt_array.append(Receipt('Deependra', 40))
-receipt_array.append(Receipt('Reaper', 44))
-receipt_array.append(Receipt('veer', 67))
-
-
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
@@ -35,8 +24,3 @@ async def root():
 @app.get("/ping")
 async def root():
     return "Pong"
-
-
-@app.get("/recipes")
-async def send_receipts():
-    return receipt_array
