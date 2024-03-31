@@ -1,9 +1,15 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
 from routes import receipyRoute
+from utils.database import engine
+from models import models
+
 
 app = FastAPI()
 app.include_router(receipyRoute.router)
+models.Base.metadata.create_all(bind=engine)
+
+
 
 origins = ["*"]
 
@@ -24,3 +30,5 @@ async def root():
 @app.get("/ping")
 async def root():
     return "Pong"
+
+
