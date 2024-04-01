@@ -10,6 +10,9 @@ import {FormsModule} from "@angular/forms";
   declarations: [
     HomeComponent
   ],
+  exports: [
+    HomeComponent
+  ],
   imports: [
     CommonModule,
     RouterModule,
