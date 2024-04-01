@@ -5,6 +5,7 @@ class BaseRecipe(BaseModel):
     name: str
     id: int
     description: str
+    instructions: str
     image: str
 
 
