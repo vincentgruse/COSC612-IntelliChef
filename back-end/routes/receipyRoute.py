@@ -23,27 +23,47 @@ def get_db():
 db_dependency = Annotated[Session, Depends(get_db)]
 
 receipy_array = [
-    BaseRecipe(name='Lebanese Chickpea Stew', id=1, description='Lebanese Chickpea', image='https://i.imgur.com'),
-    BaseRecipe(name='Skillet Rolls', id=2, description='Lebanese Chickpea', image='https://i.imgur.com'),
-    BaseRecipe(name='Honey Garlic Chicken', id=3, description='Lebanese Chickpea', image='https://i.imgur.com'),
-    BaseRecipe(name='Turkey Bites & Garlic Butter', id=4, description='Lebanese Chickpea', image='https://i.imgur.com')
+    BaseRecipe(name='Lebanese Chickpea Stew', id=1, description='Lebanese Chickpea', image='https://i.imgur.com',
+               instructions='Lebanese Chickpea'),
+    BaseRecipe(name='Skillet Rolls', id=2, description='Lebanese Chickpea', image='https://i.imgur.com',
+               instructions='Lebanese Chickpea'),
+    BaseRecipe(name='Honey Garlic Chicken', id=3, description='Lebanese Chickpea', image='https://i.imgur.com',
+               instructions='Lebanese Chickpea'),
+    BaseRecipe(name='Turkey Bites & Garlic Butter', id=4, description='Lebanese Chickpea', image='https://i.imgur.com',
+               instructions='Lebanese Chickpea')
 ]
 
 
-@router.get("/all")
+@router.get("/ingredients")
 async def get_ingredients(db: db_dependency):
     return db.query(models.models.Ingredient).all()
 
 
 @router.get("/recipes")
-async def send_receipts():
-    return receipy_array
+async def send_receipts(db: db_dependency):
+    return db.query(models.models.Recipe).all()
 
+@router.post("/ingredients")
+async def create_ingredients_list(db: db_dependency, ingredients: list[BaseIngredient]):
+    ingredient_list = []
+    if ingredients and len(ingredients) > 0:
+        for ingredient in ingredients:
+            db_ingredient = models.models.Ingredient(**ingredient.dict())
+            db_ingredient.created_by = 1
+            ingredient_list.append(db_ingredient)
+
+        db.add_all(ingredient_list)
+        db.commit()
 
 @router.post("/recipe")
-async def create_receipts(receipy: BaseRecipe):
-    receipy_array.append(receipy)
-    return (receipy_array)
+async def create_recipe(baseRecipe: BaseRecipe,  db: db_dependency):
+    print(baseRecipe.dict())
+    db_ingredient = models.models.Recipe(**baseRecipe.dict())
+    # db_ingredient.recipes = []
+    db.add(db_ingredient)
+    db.commit()
+
+
 
 
 @router.post("/ingredient", status_code=status.HTTP_201_CREATED)
