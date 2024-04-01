@@ -46,6 +46,11 @@ input {
   margin-top: 8px;
   right: 15px;
   cursor: pointer;
+  transition: transform 0.5s ease;
+}
+
+.search-button:hover {
+  transform: scale(1.05);
 }
 
 .search-icon {
@@ -112,6 +117,7 @@ ul {
   padding: 10px 20px;
   cursor: pointer;
   margin-top: 20px;
+  transition: transform 0.5s ease;
 }
 
 .submit-icon {
@@ -120,4 +126,5 @@ ul {
 
 .submit-button:hover {
   background-color: #8dde8d;
+  transform: scale(1.05);
 }
