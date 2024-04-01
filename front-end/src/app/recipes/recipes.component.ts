@@ -18,7 +18,12 @@ export class RecipesComponent implements OnInit{
               private recipeService: RecipeService,
               private ingredientService: IngredientService)
   {
-    this.ingredients = this.ingredientService.getIngredients();
+    // this.ingredients = this.ingredientService.getIngredients();
+
+    this.ingredientService.getIngredientsFromDatabase().subscribe(ingredients => {
+      console.log('result: ', ingredients)
+      this.ingredients = ingredients;
+    });
   }
 
   ngOnInit() {
