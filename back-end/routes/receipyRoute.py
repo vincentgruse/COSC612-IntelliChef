@@ -1,4 +1,6 @@
-from fastapi import APIRouter, HTTPException, Depends
+import base64
+
+from fastapi import APIRouter, HTTPException, Depends, File, UploadFile, Form
 from starlette import status
 
 import models.models
@@ -43,6 +45,7 @@ async def get_ingredients(db: db_dependency):
 async def send_receipts(db: db_dependency):
     return db.query(models.models.Recipe).all()
 
+
 @router.post("/ingredients")
 async def create_ingredients_list(db: db_dependency, ingredients: list[BaseIngredient]):
     ingredient_list = []
@@ -54,16 +57,6 @@ async def create_ingredients_list(db: db_dependency, ingredients: list[BaseIngre
 
         db.add_all(ingredient_list)
         db.commit()
-
-@router.post("/recipe")
-async def create_recipe(baseRecipe: BaseRecipe,  db: db_dependency):
-    print(baseRecipe.dict())
-    db_ingredient = models.models.Recipe(**baseRecipe.dict())
-    # db_ingredient.recipes = []
-    db.add(db_ingredient)
-    db.commit()
-
-
 
 
 @router.post("/ingredient", status_code=status.HTTP_201_CREATED)
@@ -88,3 +81,24 @@ async def update_recipe(receipy: BaseRecipe):
         index = -1
         raise HTTPException(status_code=400, detail="recipe not found")
     return receipy_array[item_index]
+
+
+# only support the image files only.
+@router.post("/recipe")
+async def create_recipe(
+        db: db_dependency,
+        base_recipe: BaseRecipe = Depends(),
+        file: UploadFile = File(...)
+):
+    print(base_recipe.dict(), file.content_type)
+    db_recipe = models.models.Recipe(**base_recipe.dict())
+
+    # processing
+    data = await file.read()
+    rv = base64.b64encode(data)
+    print(rv, "image data")
+    db_recipe.image = rv
+    # db_ingredient.recipes = []
+    db.add(db_recipe)
+    db.commit()
+    return 'recipe saved successfully: ' + base_recipe.name
