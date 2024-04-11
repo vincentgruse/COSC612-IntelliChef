@@ -24,17 +24,6 @@ def get_db():
 # annotation for dependency injection
 db_dependency = Annotated[Session, Depends(get_db)]
 
-receipy_array = [
-    BaseRecipe(name='Lebanese Chickpea Stew', id=1, description='Lebanese Chickpea', image='https://i.imgur.com',
-               instructions='Lebanese Chickpea'),
-    BaseRecipe(name='Skillet Rolls', id=2, description='Lebanese Chickpea', image='https://i.imgur.com',
-               instructions='Lebanese Chickpea'),
-    BaseRecipe(name='Honey Garlic Chicken', id=3, description='Lebanese Chickpea', image='https://i.imgur.com',
-               instructions='Lebanese Chickpea'),
-    BaseRecipe(name='Turkey Bites & Garlic Butter', id=4, description='Lebanese Chickpea', image='https://i.imgur.com',
-               instructions='Lebanese Chickpea')
-]
-
 
 @router.get("/ingredients")
 async def get_ingredients(db: db_dependency):
@@ -42,7 +31,7 @@ async def get_ingredients(db: db_dependency):
 
 
 @router.get("/recipes")
-async def send_receipts(db: db_dependency):
+async def get_receipts(db: db_dependency):
     return db.query(models.models.Recipe).all()
 
 
@@ -68,21 +57,6 @@ async def create_Ingredient(baseIngredient: BaseIngredient, db: db_dependency):
     db.commit()
 
 
-@router.put("/recipe")
-async def update_recipe(receipy: BaseRecipe):
-    # find recipy by id
-    item_index = 0
-    for index, item in enumerate(receipy_array):
-        if item.id == receipy.id:
-            receipy_array[index] = receipy
-            item_index = index
-            break
-    else:
-        index = -1
-        raise HTTPException(status_code=400, detail="recipe not found")
-    return receipy_array[item_index]
-
-
 # only support the image files only.
 @router.post("/recipe")
 async def create_recipe(
@@ -102,3 +76,52 @@ async def create_recipe(
     db.add(db_recipe)
     db.commit()
     return 'recipe saved successfully: ' + base_recipe.name
+
+
+@router.put("/recipe")
+async def update_recipe(
+        db: db_dependency,
+        base_recipe: BaseRecipe = Depends(),
+        file: UploadFile = File(...)
+):
+    print(base_recipe.dict(), file.content_type)
+    # check if the provided ID of recipe is existing
+    db_recipe = get_recipe(base_recipe.id, db)
+    if not db_recipe:
+        raise HTTPException(status_code=404, detail="Recipe not found")
+
+    db_recipe = models.models.Recipe(**base_recipe.dict())
+    # encoding the byte array
+    data = await file.read()
+    rv = base64.b64encode(data)
+    print(rv, "image data")
+    db_recipe.image = rv
+    db.add(db_recipe)
+    db.commit()
+    db.refresh(db_recipe)
+    return db_recipe
+
+
+@router.patch("/recipe")
+async def update_recipe_image(
+        db: db_dependency,
+        recipe_id: Annotated[int, Form()],
+        file: UploadFile = File(...)
+):
+    db_recipe = get_recipe(recipe_id, db)
+    if not db_recipe:
+        raise HTTPException(status_code=404, detail="Recipe not found")
+
+    # encoding the byte array
+    data = await file.read()
+    rv = base64.b64encode(data)
+    print(rv, "image data")
+    db_recipe.image = rv
+    db.add(db_recipe)
+    db.commit()
+    db.refresh(db_recipe)
+    return db_recipe
+
+
+def get_recipe(recipe_id: int, db: db_dependency):
+    return db.query(models.models.Recipe).filter(models.models.Ingredient.id == recipe_id).first()
