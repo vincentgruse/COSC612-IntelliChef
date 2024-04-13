@@ -1,41 +1,48 @@
-<!-- Main container -->
-<div class="container">
+<div class="banner">
+  <h3>Intellichef</h3>
+  <img src="assets/user-icon.png" alt="User Icon">
+</div>
+
+<div class="content">
   <h1>IntelliChef</h1>
   <h2>Start typing ingredients...</h2>
+  <div class="top-content-container">
 
-  <!-- Input container for adding ingredients -->
-  <div class="input-container">
-    <!-- Input field for entering new ingredients -->
-    <input type="text" placeholder="Add an ingredient..." [(ngModel)]="newIngredient" (keyup.enter)="addIngredient()">
+    <!-- Input container for adding ingredients -->
+    <div class="input-container">
+      <!-- Input field for entering new ingredients -->
+      <input type="text" placeholder="Add an ingredient..." [(ngModel)]="newIngredient" (keyup.enter)="addIngredient()">
 
-    <!-- Button to add the ingredient -->
-    <div type="submit" class="search-button" (click)="addIngredient()">
-      <img src="assets/search-icon.png" alt="Add" class="search-icon">
+      <!-- Button to add the ingredient -->
+      <div type="submit" class="search-button" (click)="addIngredient()">
+        <img src="assets/search-icon.png" alt="Add" class="search-icon">
+      </div>
     </div>
+  </div>
+
+  <!-- Container for displaying the list of ingredients -->
+  <div class="list-container">
+    <ul>
+      <!-- Loop through each ingredient in the ingredients array -->
+      <li *ngFor="let ingredient of ingredients; index as i" class="list-item">
+        <!-- Display the name of the ingredient -->
+        <span class="ingredient-text">{{ ingredient.name }}</span>
+
+        <!-- Button to delete the ingredient -->
+        <div class="delete-button" (click)="deleteIngredient(i)">
+          <img src="assets/delete-icon.png" alt="Delete" class="delete-icon">
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Container for the submit button -->
+  <div class="submit-container">
+    <!-- Submit button to start cooking -->
+    <button type="button" (click)="goToRecipes()" class="submit-button">
+      <img src="assets/submit-icon.png" alt="Submit" class="submit-icon">
+      Start Cooking
+    </button>
   </div>
 </div>
 
-<!-- Container for displaying the list of ingredients -->
-<div class="list-container">
-  <ul>
-    <!-- Loop through each ingredient in the ingredients array -->
-    <li *ngFor="let ingredient of ingredients; index as i" class="list-item">
-      <!-- Display the name of the ingredient -->
-      <span class="ingredient-text">{{ ingredient.name }}</span>
-
-      <!-- Button to delete the ingredient -->
-      <div class="delete-button" (click)="deleteIngredient(i)">
-        <img src="assets/delete-icon.png" alt="Delete" class="delete-icon">
-      </div>
-    </li>
-  </ul>
-</div>
-
-<!-- Container for the submit button -->
-<div class="submit-container">
-  <!-- Submit button to start cooking -->
-  <button type="button" (click)="goToRecipes()" class="submit-button">
-    <img src="assets/submit-icon.png" alt="Submit" class="submit-icon">
-    Start Cooking
-  </button>
-</div>

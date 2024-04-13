@@ -1,15 +1,16 @@
 /* Global styles and font imports */
 @import url('https://fonts.googleapis.com/css2?family=Jomhuria&family=Sriracha&family=Staatliches&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+}
 
 /* Body styles */
 body {
-  font-family: "Staatliches", sans-serif;
-  font-weight: 400;
-  font-size: 30px;
-  background-color: #FF5732;
-  margin: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  justify-content: center;
+  max-width: 100%;
+  font-family: "Staatliches", sans-serif;
+  background-color: #FF5732;
 }
