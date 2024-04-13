@@ -1,3 +1,17 @@
+/* Content styles */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top-content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1000px;
+}
+
 /* Header styles */
 h1 {
   font-family: "Jomhuria", serif;
@@ -5,8 +19,9 @@ h1 {
   font-weight: 400;
   color: white;
   -webkit-text-stroke: 3px #000;
-  margin-bottom: -50px;
   text-align: center;
+  margin-top: 100px;
+  margin-bottom: -20px;
 }
 
 /* Subheader styles */
@@ -16,8 +31,8 @@ h2 {
   font-weight: 400;
   color: white;
   -webkit-text-stroke: 1px #000;
-  text-align: left;
-  margin-bottom: 2px;
+  margin-left: -200px;
+  margin-bottom: -5px;
 }
 
 /* Input styles */
@@ -27,7 +42,7 @@ h2 {
   height: 65px;
   width: 500px;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 input {
@@ -43,7 +58,7 @@ input {
 
 .search-button {
   position: absolute;
-  margin-top: 8px;
+  margin-top: 5px;
   right: 15px;
   cursor: pointer;
   transition: transform 0.5s ease;
@@ -64,7 +79,6 @@ ul {
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .list-container {
@@ -77,12 +91,18 @@ ul {
 .list-item {
   font-size: 20px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   background-color: #FFD53F;
   border-radius: 100vw;
   margin: 3px;
   padding: 2px 8px;
+  transition: transform 0.5s ease;
+}
+
+.list-item:hover {
+  transform: scale(1.05);
 }
 
 .delete-button {
@@ -95,11 +115,12 @@ ul {
   opacity: 50%;
 }
 
+/* Submit container styles */
 .submit-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%; /* Added to ensure the container spans the full width */
+  width: 100%;
 }
 
 /* Submit button styles */

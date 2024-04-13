@@ -1,15 +1,111 @@
 /* Global styles and font imports */
 @import url('https://fonts.googleapis.com/css2?family=Jomhuria&family=Sriracha&family=Staatliches&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+}
 
 /* Body styles */
 body {
-  font-family: "Staatliches", sans-serif;
-  font-weight: 400;
-  font-size: 30px;
-  background-color: #FF5732;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 100%;
+  font-family: "Staatliches", sans-serif; /* Set the default font family */
+  background-color: #FF5732; /* Set the background color of the body */
+}
+
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Banner styles */
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  max-width: 100%;
+  background-color: #FFD53F; /* Set the background color of the banner */
+  color: #000000; /* Set the text color of the banner */
+  padding: 0 5px; /* Add padding to the banner */
+}
+
+.banner h3 {
+  margin: 0; /* Remove default margin for the heading */
+  font-size: 1.5rem; /* Adjust font size as needed */
+}
+
+.banner img {
+  margin-top: -3px;
+  height: 40px; /* Set the height of the user icon */
+  width: auto; /* Maintain aspect ratio */
+  transition: transform 0.5s ease; /* Add a smooth transition effect */
+}
+
+.banner img:hover {
+  transform: scale(1.05); /* Scale the image on hover */
+}
+
+/* Dropdown styles */
+.dropdown-content {
+  display: none; /* Start by hiding the dropdown */
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Add a shadow effect */
+  min-width: 100px;
+  right: 5px;
+  z-index: 1;
+}
+
+.dropdown-content.show {
+  display: flex; /* Display the dropdown when .show class is added */
+  z-index: 1;
+}
+
+.user-dropdown {
+  margin-top: 10px;
+  position: relative; /* Make sure the container is positioned */
+}
+
+.dropdown-content ul {
+  list-style-type: none;
+  padding: 0;
   margin: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+}
+
+.dropdown-content ul li {
+  border-bottom: 1px solid #c8c8c8;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dropdown-content ul li:first-child {
+  border-top: none;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.dropdown-content ul li:last-child {
+  border-bottom: none;
+  border-radius: 10px;
+}
+
+.dropdown-content ul li a {
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+
+.dropdown-content ul li:hover {
+  background-color: rgba(255, 213, 63, 0.3); /* Change background color on hover */
 }

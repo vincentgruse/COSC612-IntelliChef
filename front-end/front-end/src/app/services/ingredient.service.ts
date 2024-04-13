@@ -62,10 +62,11 @@ export class IngredientService {
       }
     })
     this.http.post<any>(BACKEND_URL + '/ingredients', ingredientList, httpOptions).subscribe(
-      response => {
+      () => {
         console.log('Data saved');
-      }, error => {
-        console.error('error occurred: ', error);
+      },
+      error => {
+        console.error('Error occurred:', error);
       }
     );
 
