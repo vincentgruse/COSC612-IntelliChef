@@ -30,7 +30,7 @@
 <h1>Recipes</h1>
 <div class="recipe-container">
   <div *ngIf="recipes.length === 0" class="no-recipes-message">No recipes available.</div>
-  <div *ngFor="let recipe of recipes" class="recipe-item">
+  <div *ngFor="let recipe of recipes" class="recipe-item" (click)=goToRecipe()>
     <div class="recipe-card">
       <h2 class="recipe-name">{{ recipe.name }}</h2>
       <img [src]="recipe.image" alt="Recipe Image" class="recipe-image">
