@@ -1,47 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
-/* Your existing .banner styles */
-.banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 50px;
-  max-width: 100%;
-  background-color: #FFD53F;
-  color: #000000;
-  padding: 0 20px;
-}
-
-.banner h3 {
-  margin: 0; /* Remove default margin for the heading */
-  font-size: 1.5rem; /* Adjust font size as needed */
-}
-
-.banner img {
-  height: 30px; /* Set the height of the user icon */
-  width: auto; /* Maintain aspect ratio */
-}
-
-.content {
-  border-style: solid;
-  border-color: purple;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.top-content-container {
-  border-style: solid;
-  border-color: blue;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 1000px;
-}
-
 /* Header styles */
 h1 {
   font-family: "Jomhuria", serif;
@@ -49,9 +5,8 @@ h1 {
   font-weight: 400;
   color: white;
   -webkit-text-stroke: 3px #000;
+  margin-bottom: -50px;
   text-align: center;
-  margin-top: 100px;
-  margin-bottom: -20px;
 }
 
 /* Subheader styles */
@@ -61,8 +16,8 @@ h2 {
   font-weight: 400;
   color: white;
   -webkit-text-stroke: 1px #000;
-  margin-left: -200px;
-  margin-bottom: -5px;
+  text-align: left;
+  margin-bottom: 2px;
 }
 
 /* Input styles */
@@ -72,6 +27,7 @@ h2 {
   height: 65px;
   width: 500px;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 input {
@@ -87,7 +43,7 @@ input {
 
 .search-button {
   position: absolute;
-  margin-top: 5px;
+  margin-top: 8px;
   right: 15px;
   cursor: pointer;
   transition: transform 0.5s ease;
@@ -108,11 +64,10 @@ ul {
   margin: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .list-container {
-  border-style: solid;
-  border-color: blue;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -128,11 +83,6 @@ ul {
   border-radius: 100vw;
   margin: 3px;
   padding: 2px 8px;
-  transition: transform 0.5s ease;
-}
-
-.list-item:hover {
-  transform: scale(1.05);
 }
 
 .delete-button {
