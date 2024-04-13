@@ -3,12 +3,14 @@ import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { HomeComponent } from './home.component';
 import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
+import { RecipeIndividualComponent } from '../recipe-individual/recipe-individual.component';
 
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    RecipeIndividualComponent
   ],
   exports: [
     HomeComponent
