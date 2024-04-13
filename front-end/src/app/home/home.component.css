@@ -1,41 +1,11 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
-/* Your existing .banner styles */
-.banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 50px;
-  max-width: 100%;
-  background-color: #FFD53F;
-  color: #000000;
-  padding: 0 20px;
-}
-
-.banner h3 {
-  margin: 0; /* Remove default margin for the heading */
-  font-size: 1.5rem; /* Adjust font size as needed */
-}
-
-.banner img {
-  height: 30px; /* Set the height of the user icon */
-  width: auto; /* Maintain aspect ratio */
-}
-
+/* Content styles */
 .content {
-  border-style: solid;
-  border-color: purple;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .top-content-container {
-  border-style: solid;
-  border-color: blue;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,6 +42,7 @@ h2 {
   height: 65px;
   width: 500px;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 input {
@@ -111,8 +82,6 @@ ul {
 }
 
 .list-container {
-  border-style: solid;
-  border-color: blue;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -122,6 +91,7 @@ ul {
 .list-item {
   font-size: 20px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   background-color: #FFD53F;
@@ -145,11 +115,12 @@ ul {
   opacity: 50%;
 }
 
+/* Submit container styles */
 .submit-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%; /* Added to ensure the container spans the full width */
+  width: 100%;
 }
 
 /* Submit button styles */
