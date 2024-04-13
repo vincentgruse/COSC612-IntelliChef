@@ -61,6 +61,15 @@ export class RecipesComponent implements OnInit {
     }
   }
 
+  goToRecipe() {
+    try {
+      this.router.navigate(['/recipe-individual']);
+    } catch (error) {
+      console.error('Error navigating to recipe-individual', error);
+      // Handle error, e.g., display an error message to the user
+    }
+  }
+
   // Toggle dropdown visibility
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
