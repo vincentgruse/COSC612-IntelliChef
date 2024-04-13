@@ -1,0 +1,20 @@
+<div class="banner">
+  <h3>Intellichef</h3>
+  <!-- User Icon with Dropdown -->
+  <div class="user-dropdown" (click)="toggleDropdown()">
+    <img src="assets/user-icon.png" alt="User Icon" height="83" width="83">
+    <!-- Dropdown Content -->
+    <div class="dropdown-content" [ngClass]="{'show': showDropdown}">
+      <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="#">Favorites</a></li>
+        <li><a href="#">Account Settings</a></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="back-button-container">
+  <button (click)="goBack()" class="back-button">Back to Recipes</button>
+</div>
