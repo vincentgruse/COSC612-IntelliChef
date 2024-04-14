@@ -11,6 +11,11 @@ export class RecipeService {
 
   constructor(private http: HttpClient) {}
 
+  // Fetch a single recipe by ID from the backend server
+  getRecipeById(recipeId: string): Observable<Recipe> {
+    return this.http.get<Recipe>(this.apiURL + "/recipe/" + recipeId);
+  }
+
   // Fetch recipes from the backend server
   getRecipes(): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(this.apiURL + "/recipes");
