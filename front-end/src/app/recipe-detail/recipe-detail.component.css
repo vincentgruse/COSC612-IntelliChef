@@ -1,0 +1,51 @@
+.recipe-detail {
+  width: 80%; /* Adjust the width as needed */
+  margin: 5% auto; /* Center horizontally */
+  max-width: 40%;
+  text-align: center; /* Center text content */
+  border-style: solid;
+  border-color: black;
+  border-width: 5px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 2vw;
+  box-shadow: 10px 5px #FFD53F;
+}
+
+.recipe-detail h1 {
+  margin-bottom: 20px; /* Add some spacing between heading and content */
+  font-size: 70px;
+}
+
+.recipe-detail h2 {
+  font-size: 40px;
+}
+
+.recipe-detail p {
+  font-size: 30px;
+  font-style: italic;
+}
+
+.recipe-detail img {
+  max-width: 100%; /* Ensure the image does not exceed the container width */
+  height: auto; /* Maintain aspect ratio */
+  margin-bottom: 20px; /* Add some spacing below the image */
+  border-radius: 2vw;
+}
+
+.recipe-detail p,
+.recipe-detail ul,
+.recipe-detail ol {
+  margin-bottom: 20px; /* Add spacing between paragraphs, lists, etc. */
+}
+
+.recipe-detail ul,
+.recipe-detail ol {
+  text-align: left; /* Align list items to the left */
+  font-size: 30px;
+  margin-left: 40px;
+}
+
+.recipe-detail li {
+  margin-bottom: 10px; /* Add spacing between list items */
+}
