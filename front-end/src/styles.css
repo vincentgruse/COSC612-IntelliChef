@@ -9,10 +9,153 @@
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  overflow: hidden;
   max-width: 100%;
   font-family: "Staatliches", sans-serif; /* Set the default font family */
-  background-color: #FF5732; /* Set the background color of the body */
+  background-color: #FF5732;
+
+}
+
+/* Fluid controls */
+.fluid-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  filter: url(#goo);
+}
+
+.particle {
+  width: 100px;
+  height: 100px;
+  bottom: -10%;
+  background-color: #FFD53F;
+  position: absolute;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: black;
+  border-width: 5px;
+  z-index: 1;
+  animation: rise 15s infinite;
+  transition: transform 5s ease, background-color 1s ease;
+}
+
+.particle:hover {
+  animation-play-state: paused; /* Pause the animation on hover */
+  transform: scale(2);
+  background-color: #E6E6FA;
+}
+
+@keyframes rise {
+  0% {bottom: -10%;}
+  10% {bottom: 0;}
+  20% {bottom: 12%;}
+  30% {bottom: 24%;}
+  40% {bottom: 36%;}
+  50% {bottom: 48%;}
+  60% {bottom: 60%;}
+  70% {bottom: 72%;}
+  80% {bottom: 84%;}
+  90% {bottom: 96%;}
+  100% {bottom: 108%;}
+}
+
+@keyframes bubbleDelay {
+  0% { animation-duration: 10s; }
+  50% { animation-duration: 15s; }
+  100% { animation-duration: 20s; }
+}
+
+.particle:nth-of-type(n) {
+  width: 30px;
+  height: 30px;
+  animation: rise 15s infinite linear, bubbleDelay 5s infinite;
+}
+
+.particle:nth-of-type(2n) {
+  width: 50px;
+  height: 50px;
+  animation: rise 10s infinite linear, bubbleDelay 7s infinite;
+}
+
+.particle:nth-of-type(3n) {
+  width: 100px;
+  height: 100px;
+  animation: rise 12s infinite linear, bubbleDelay 9s infinite;
+}
+
+.particle:nth-of-type(1) {
+  left: 10%;
+  animation-delay: 1s;
+}
+
+.particle:nth-of-type(2) {
+  left: 60%;
+  animation-delay: 2s;
+}
+
+.particle:nth-of-type(3) {
+  left: 15%;
+  animation-delay: 3s;
+}
+
+.particle:nth-of-type(4) {
+  left: 75%;
+  animation-delay: 4s;
+}
+
+.particle:nth-of-type(5) {
+  left: 35%;
+  animation-delay: 5s;
+}
+
+.particle:nth-of-type(6) {
+  left: 50%;
+  animation-delay: 6s;
+}
+
+.particle:nth-of-type(7) {
+  left: 65%;
+  animation-delay: 7s;
+}
+
+.particle:nth-of-type(8) {
+  left: 5%;
+  animation-delay: 8s;
+}
+
+.particle:nth-of-type(9) {
+  left: 55%;
+  animation-delay: 9s;
+}
+
+.particle:nth-of-type(10) {
+  left: 30%;
+  animation-delay: 10s;
+}
+
+.particle:nth-of-type(11) {
+  left: 35%;
+  animation-delay: 11s;
+}
+
+.particle:nth-of-type(12) {
+  left: 80%;
+  animation-delay: 12s;
+}
+
+.particle:nth-of-type(13) {
+  left: 65%;
+  animation-delay: 13s;
+}
+
+.particle:nth-of-type(14) {
+  left: 40%;
+  animation-delay: 14s;
+}
+
+.particle:nth-of-type(15) {
+  left: 90%;
+  animation-delay: 15s;
 }
 
 /* Reset CSS */
@@ -31,11 +174,12 @@ body {
   background-color: #FFD53F; /* Set the background color of the banner */
   color: #000000; /* Set the text color of the banner */
   padding: 0 5px; /* Add padding to the banner */
+  z-index: 9999;
 }
 
 .banner h3 {
   margin: 0; /* Remove default margin for the heading */
-  font-size: 1.5rem; /* Adjust font size as needed */
+  font-size: 30px;
 }
 
 .banner img {
@@ -66,7 +210,7 @@ body {
 
 .dropdown-content.show {
   display: flex; /* Display the dropdown when .show class is added */
-  z-index: 1;
+  z-index: 2;
 }
 
 .user-dropdown {
