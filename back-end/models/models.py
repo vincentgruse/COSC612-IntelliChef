@@ -20,6 +20,7 @@ class Recipe(Base):
     description = Column(String(500))
     instructions = Column(String(1000))
     image = Column(String(500))
+    favourite = Column(Integer)
     ingredients = relationship("Ingredient", secondary="recipe_ingredient", back_populates='recipes')
 
 
