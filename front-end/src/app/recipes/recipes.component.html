@@ -30,11 +30,13 @@
 <h1>Recipes</h1>
 <div class="recipe-container">
   <div *ngIf="recipes.length === 0" class="no-recipes-message">No recipes available.</div>
-  <div *ngFor="let recipe of recipes" class="recipe-item" (click)=goToRecipe()>
-    <div class="recipe-card">
+  <div *ngFor="let recipe of recipes" class="recipe-item">
+    <img [src]="isFavorite ? 'assets/star-filled.png' : 'assets/star-unfilled.png'" alt="Favorite's star" class="star-image" (click)="toggleFavorite()">
+    <div class="recipe-card" (click)="goToRecipe(recipe.id)">
       <h2 class="recipe-name">{{ recipe.name }}</h2>
       <img [src]="recipe.image" alt="Recipe Image" class="recipe-image">
       <p class="recipe-description">{{ recipe.description }}</p>
     </div>
   </div>
 </div>
+
