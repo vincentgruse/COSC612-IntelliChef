@@ -22,6 +22,7 @@ h1 {
   text-align: center;
   margin-top: 100px;
   margin-bottom: -20px;
+  z-index: 2;
 }
 
 /* Subheader styles */
@@ -32,7 +33,8 @@ h2 {
   color: white;
   -webkit-text-stroke: 1px #000;
   margin-left: -200px;
-  margin-bottom: -5px;
+  margin-bottom: 0;
+  z-index: 2;
 }
 
 /* Input styles */
@@ -43,6 +45,7 @@ h2 {
   width: 500px;
   align-items: center;
   margin-bottom: 10px;
+  z-index: 2;
 }
 
 input {
@@ -54,6 +57,7 @@ input {
   border: 3px solid black;
   padding-left: 20px;
   padding-right: 60px;
+  outline: none;
 }
 
 .search-button {
@@ -62,6 +66,7 @@ input {
   right: 15px;
   cursor: pointer;
   transition: transform 0.5s ease;
+  z-index: 2;
 }
 
 .search-button:hover {
@@ -70,6 +75,7 @@ input {
 
 .search-icon {
   height: 45px;
+  z-index: 2;
 }
 
 /* List styles */
@@ -79,6 +85,7 @@ ul {
   margin: 0;
   display: flex;
   flex-wrap: wrap;
+  z-index: 2;
 }
 
 .list-container {
@@ -121,6 +128,7 @@ ul {
   justify-content: center;
   align-items: center;
   width: 100%;
+  z-index: 2;
 }
 
 /* Submit button styles */
