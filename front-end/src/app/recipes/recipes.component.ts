@@ -13,9 +13,10 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./recipes.component.css']
 })
 export class RecipesComponent implements OnInit {
-  ingredients: Ingredient[] = []; // Array to store ingredients
-  recipes: Recipe[] = []; // Array to store recipes
-  showDropdown = false; // State variable for managing dropdown visibility
+  ingredients: Ingredient[] = [];
+  recipes: Recipe[] = [];
+  showDropdown = false;
+  isFavorite: boolean = false;
 
   constructor(
     private router: Router,
@@ -24,70 +25,66 @@ export class RecipesComponent implements OnInit {
     private elementRef: ElementRef,
     private domSanitizer: DomSanitizer
   ) {
-    // Fetch ingredients from the database on component initialization
     this.ingredientService.getIngredientsFromDatabase().subscribe(
       ingredients => {
-        console.log('Fetched ingredients:', ingredients);
         this.ingredients = ingredients;
       },
       error => {
         console.error('Error fetching ingredients:', error);
-        // Handle error, e.g., display an error message to the user
       }
     );
   }
 
   ngOnInit() {
-    // Fetch recipes on component initialization
     this.recipeService.getRecipes().subscribe(recipes => {
       this.recipes = recipes;
-      // Process image data for recipes
-      if (this.recipes) {
-        this.recipes.forEach(item => {
-          item.image = <string>this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + item.image)
-        });
-      }
-      console.log('Fetched recipes:', this.recipes);
+      this.processRecipeImages();
     });
   }
 
-  // Method to navigate back to the home component
   goBack() {
     try {
       this.router.navigate(['/home']);
     } catch (error) {
       console.error('Error navigating back to home:', error);
-      // Handle error, e.g., display an error message to the user
     }
   }
 
-  goToRecipe() {
+  goToRecipe(recipeId: string) {
     try {
-      this.router.navigate(['/recipe-individual']);
+      this.router.navigate(['/recipe', recipeId]); // Navigate to recipe detail with ID
     } catch (error) {
-      console.error('Error navigating to recipe-individual', error);
-      // Handle error, e.g., display an error message to the user
+      console.error('Error navigating to recipe detail:', error);
     }
   }
 
-  // Toggle dropdown visibility
+  processRecipeImages() {
+    if (this.recipes) {
+      this.recipes.forEach(item => {
+        item.image = <string>this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + item.image);
+      });
+    }
+  }
+
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
   }
 
-  // Close dropdown
   closeDropdown() {
     this.showDropdown = false;
   }
 
-  // Listen for click events to close dropdown when clicked outside
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
     const clickedElement = event.target as HTMLElement;
     const dropdownContainer = this.elementRef.nativeElement.querySelector('.user-dropdown');
 
     if (dropdownContainer && !dropdownContainer.contains(clickedElement)) {
-      this.closeDropdown(); // Close dropdown if clicked outside
+      this.closeDropdown();
     }
+  }
+
+  toggleFavorite(): void {
+    this.isFavorite =!this.isFavorite;
   }
 }
