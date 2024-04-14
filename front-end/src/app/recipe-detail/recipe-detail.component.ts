@@ -11,7 +11,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 })
 export class RecipeDetailComponent implements OnInit {
   showDropdown = false;
-  recipe: Recipe  = {description: "", favourite: false, id: "", image: "", ingredients: [], instructions: "", name: ""};
+  recipe: Recipe  = {description: "", favourite: false, id: 0, image: "", ingredients: [], instructions: "", name: ""};
 
   constructor(
     private recipeService: RecipeService,

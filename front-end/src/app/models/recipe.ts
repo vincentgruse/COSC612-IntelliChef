@@ -1,6 +1,6 @@
 
 export interface Recipe {
-  id: string
+  id: number
   name: string
   image: string//Base64 encoded image
   description: string

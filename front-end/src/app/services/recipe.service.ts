@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Recipe } from '../models/recipe';
 
@@ -19,5 +19,13 @@ export class RecipeService {
   // Fetch recipes from the backend server
   getRecipes(): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(this.apiURL + "/recipes");
+  }
+
+  updateFavourite(recipe_id: number, favourite: number): Observable<Recipe> {
+    // using a form to send values
+    const body = new FormData();
+    body.append('recipe_id', recipe_id.toString());
+    body.append('favourite', favourite.toString());
+    return this.http.patch<Recipe>(this.apiURL + "/add_to_favourites", body);
   }
 }

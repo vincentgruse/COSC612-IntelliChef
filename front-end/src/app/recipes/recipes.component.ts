@@ -50,7 +50,7 @@ export class RecipesComponent implements OnInit {
     }
   }
 
-  goToRecipe(recipeId: string) {
+  goToRecipe(recipeId: any) {
     try {
       this.router.navigate(['/recipe', recipeId]); // Navigate to recipe detail with ID
     } catch (error) {
@@ -84,7 +84,17 @@ export class RecipesComponent implements OnInit {
     }
   }
 
-  toggleFavorite(): void {
-    this.isFavorite =!this.isFavorite;
+  toggleFavorite(recipe: Recipe): void {
+    // update favourite
+    this.recipeService.updateFavourite(recipe?.id, !(recipe?.favourite) ? 1 : 0).subscribe(
+      response => {
+        // update recipes array
+        let itemIndex = this.recipes.findIndex(item => item.id == response.id);
+        this.recipes[itemIndex] = response;
+        this.processRecipeImages();
+      }, error => {
+        console.error('error occurred: ', error)
+      }
+    )
   }
 }
