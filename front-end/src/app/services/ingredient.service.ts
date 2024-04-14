@@ -32,8 +32,6 @@ export class IngredientService {
       })
     };
     return this.http.get<Ingredient[]>(BACKEND_URL + '/ingredients', httpOptions);
-
-
   }
 
   // Delete operation
