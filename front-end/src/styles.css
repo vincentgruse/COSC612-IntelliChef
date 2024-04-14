@@ -22,19 +22,20 @@ body {
   height: 100vh;
   position: relative;
   filter: url(#goo);
+  z-index: 0;
 }
 
 .particle {
   width: 100px;
   height: 100px;
-  bottom: -10%;
+  bottom: -15%;
   background-color: #FFD53F;
   position: absolute;
   border-radius: 50%;
   border-style: solid;
   border-color: black;
   border-width: 5px;
-  z-index: 1;
+  z-index: -1;
   animation: rise 15s infinite;
   transition: transform 5s ease, background-color 1s ease;
 }
@@ -42,7 +43,7 @@ body {
 .particle:hover {
   animation-play-state: paused; /* Pause the animation on hover */
   transform: scale(2);
-  background-color: #E6E6FA;
+  background-color: #FFA500;
 }
 
 @keyframes rise {
@@ -84,7 +85,7 @@ body {
 }
 
 .particle:nth-of-type(1) {
-  left: 10%;
+  left: 20%;
   animation-delay: 1s;
 }
 
@@ -119,7 +120,7 @@ body {
 }
 
 .particle:nth-of-type(8) {
-  left: 5%;
+  left: 30%;
   animation-delay: 8s;
 }
 
@@ -129,7 +130,7 @@ body {
 }
 
 .particle:nth-of-type(10) {
-  left: 30%;
+  left: 60%;
   animation-delay: 10s;
 }
 
@@ -154,7 +155,7 @@ body {
 }
 
 .particle:nth-of-type(15) {
-  left: 90%;
+  left: 85%;
   animation-delay: 15s;
 }
 
@@ -179,7 +180,7 @@ body {
 
 .banner h3 {
   margin: 0; /* Remove default margin for the heading */
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .banner img {
