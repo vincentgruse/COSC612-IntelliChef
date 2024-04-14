@@ -35,6 +35,14 @@ async def get_receipts(db: db_dependency):
     return db.query(models.models.Recipe).all()
 
 
+@router.get("/recipe/{recipeId}")
+async def get_receipts(db: db_dependency, recipeId):
+    db_recipe = get_recipe(recipeId, db)
+    if not db_recipe:
+        raise HTTPException(status_code=404, detail="Recipe not found")
+    return db_recipe
+
+
 @router.post("/ingredients")
 async def create_ingredients_list(db: db_dependency, ingredients: list[BaseIngredient]):
     ingredient_list = []
@@ -123,5 +131,22 @@ async def update_recipe_image(
     return db_recipe
 
 
+@router.patch("/add_to_favourites")
+async def add_to_favourites(
+        db: db_dependency,
+        recipe_id: Annotated[int, Form()],
+        favourite: Annotated[int, Form()]
+):
+    db_recipe = get_recipe(recipe_id, db)
+    if not db_recipe:
+        raise HTTPException(status_code=404, detail="Recipe not found")
+
+    db_recipe.favourite = favourite
+    db.add(db_recipe)
+    db.commit()
+    db.refresh(db_recipe)
+    return db_recipe
+
+
 def get_recipe(recipe_id: int, db: db_dependency):
-    return db.query(models.models.Recipe).filter(models.models.Ingredient.id == recipe_id).first()
+    return db.query(models.models.Recipe).filter(models.models.Recipe.id == recipe_id).first()
