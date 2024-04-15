@@ -27,7 +27,7 @@ body {
 .particle {
   width: 100px;
   height: 100px;
-  bottom: -15%;
+  bottom: -20%;
   background-color: #FFD53F;
   position: absolute;
   border-radius: 50%;
