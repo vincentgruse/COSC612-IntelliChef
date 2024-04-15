@@ -1,22 +1,5 @@
 <div class="fluid-container">
-  <div class="banner">
-    <!-- Banner section displaying the application name -->
-    <h3>Intellichef</h3>
-    <!-- User icon with dropdown menu -->
-    <div class="user-dropdown" (click)="toggleDropdown()">
-      <img src="assets/user-icon.png" alt="User Icon" height="83" width="83">
-      <!-- Dropdown content -->
-      <div class="dropdown-content" [ngClass]="{'show': showDropdown}">
-        <ul>
-          <!-- Navigation links for user options -->
-          <li><a href="/home">Home</a></li>
-          <li><a href="#">Favorites</a></li>
-          <li><a href="#">Account Settings</a></li>
-          <li><a href="#">Logout</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <app-menu></app-menu>
   <div class="content">
     <!-- Main content section -->
     <h1>IntelliChef</h1>
