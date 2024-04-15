@@ -9,17 +9,16 @@
 body {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   max-width: 100%;
   font-family: "Staatliches", sans-serif; /* Set the default font family */
   background-color: #FF5732;
-
 }
 
 /* Fluid controls */
 .fluid-container {
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
   position: relative;
   filter: url(#goo);
   z-index: 0;
@@ -256,7 +255,7 @@ body {
 }
 
 .back-button {
-  position: fixed;
+  position: relative;
   font-family: inherit;
   font-size: 30px;
   background-color: #98FF98;
