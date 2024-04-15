@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { HomeComponent } from './home.component';
 import {RouterModule} from "@angular/router";
+import {MenuComponent} from "../menu/menu.component";
 import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    MenuComponent
   ],
   exports: [
     HomeComponent
@@ -14,8 +16,8 @@ import {FormsModule} from "@angular/forms";
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    FormsModule
   ]
 })
 export class HomeModule { }
