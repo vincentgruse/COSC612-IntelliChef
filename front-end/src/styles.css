@@ -36,11 +36,10 @@ body {
   border-width: 5px;
   z-index: -1;
   animation: rise 15s infinite;
-  transition: transform 5s ease, background-color 1s ease;
+  transition: transform 3s ease, background-color 1s ease;
 }
 
 .particle:hover {
-  animation-play-state: paused; /* Pause the animation on hover */
   transform: scale(2);
   background-color: #FFA500;
 }
@@ -174,6 +173,7 @@ body {
   background-color: #FFD53F; /* Set the background color of the banner */
   color: #000000; /* Set the text color of the banner */
   padding: 0 5px; /* Add padding to the banner */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add drop shadow */
   z-index: 9999;
 }
 
