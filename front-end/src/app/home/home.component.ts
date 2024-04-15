@@ -11,12 +11,10 @@ import { Ingredient } from "../models/ingredient";
 export class HomeComponent implements OnInit {
   ingredients: Ingredient[] = []; // Array to store ingredients
   newIngredient: string = ''; // Input for new ingredient
-  showDropdown = false; // State variable for managing dropdown visibility
 
   constructor(
     private ingredientService: IngredientService,
-    private router: Router,
-    private elementRef: ElementRef
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -43,26 +41,5 @@ export class HomeComponent implements OnInit {
   goToRecipes() {
     const ingredients = this.ingredients.map(ingredient => ingredient.name); // Extract names from Ingredient objects
     this.router.navigate(['/recipes'], { queryParams: { ingredients: ingredients.join(',') } });
-  }
-
-  // Toggle dropdown visibility
-  toggleDropdown() {
-    this.showDropdown = !this.showDropdown;
-  }
-
-  // Close dropdown
-  closeDropdown() {
-    this.showDropdown = false;
-  }
-
-  // Listen for click events to close dropdown when clicked outside
-  @HostListener('document:click', ['$event'])
-  onClick(event: MouseEvent) {
-    const clickedElement = event.target as HTMLElement;
-    const dropdownContainer = this.elementRef.nativeElement.querySelector('.user-dropdown');
-
-    if (dropdownContainer && !dropdownContainer.contains(clickedElement)) {
-      this.closeDropdown(); // Close dropdown if clicked outside
-    }
   }
 }
