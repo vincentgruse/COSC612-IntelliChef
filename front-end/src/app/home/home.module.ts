@@ -11,7 +11,8 @@ import {FormsModule} from "@angular/forms";
     MenuComponent
   ],
   exports: [
-    HomeComponent
+    HomeComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,
