@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import { Recipe } from "../models/recipe";
 import { RecipeService } from "../services/recipe.service";
@@ -10,14 +10,12 @@ import { DomSanitizer } from "@angular/platform-browser";
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
-  showDropdown = false;
   recipe: Recipe  = {description: "", favourite: false, id: 0, image: "", ingredients: [], instructions: "", name: ""};
 
   constructor(
     private recipeService: RecipeService,
     private router: Router,
     private route: ActivatedRoute,
-    private elementRef: ElementRef,
     private domSanitizer: DomSanitizer
   ) { }
 
@@ -57,26 +55,5 @@ export class RecipeDetailComponent implements OnInit {
   // Method to navigate back to the recipes component
   goBack(): void {
     this.router.navigate(['/recipes']);
-  }
-
-  // Toggle dropdown visibility
-  toggleDropdown(): void {
-    this.showDropdown = !this.showDropdown;
-  }
-
-  // Close dropdown
-  closeDropdown(): void {
-    this.showDropdown = false;
-  }
-
-  // Listen for click events to close dropdown when clicked outside
-  @HostListener('document:click', ['$event'])
-  onClick(event: MouseEvent): void {
-    const clickedElement = event.target as HTMLElement;
-    const dropdownContainer = this.elementRef.nativeElement.querySelector('.user-dropdown');
-
-    if (dropdownContainer && !dropdownContainer.contains(clickedElement)) {
-      this.closeDropdown(); // Close dropdown if clicked outside
-    }
   }
 }

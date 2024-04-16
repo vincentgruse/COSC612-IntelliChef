@@ -1,10 +1,9 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from "../models/recipe";
 import { RecipeService } from "../services/recipe.service";
 import { IngredientService } from "../services/ingredient.service";
 import { Ingredient } from "../models/ingredient";
 import { Router } from "@angular/router";
-import { ElementRef } from "@angular/core";
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -15,14 +14,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class RecipesComponent implements OnInit {
   ingredients: Ingredient[] = [];
   recipes: Recipe[] = [];
-  showDropdown = false;
   isFavorite: boolean = false;
 
   constructor(
     private router: Router,
     private recipeService: RecipeService,
     private ingredientService: IngredientService,
-    private elementRef: ElementRef,
     private domSanitizer: DomSanitizer
   ) {
     this.ingredientService.getIngredientsFromDatabase().subscribe(
@@ -63,24 +60,6 @@ export class RecipesComponent implements OnInit {
       this.recipes.forEach(item => {
         item.image = <string>this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + item.image);
       });
-    }
-  }
-
-  toggleDropdown() {
-    this.showDropdown = !this.showDropdown;
-  }
-
-  closeDropdown() {
-    this.showDropdown = false;
-  }
-
-  @HostListener('document:click', ['$event'])
-  onClick(event: MouseEvent) {
-    const clickedElement = event.target as HTMLElement;
-    const dropdownContainer = this.elementRef.nativeElement.querySelector('.user-dropdown');
-
-    if (dropdownContainer && !dropdownContainer.contains(clickedElement)) {
-      this.closeDropdown();
     }
   }
 
