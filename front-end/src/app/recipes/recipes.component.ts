@@ -69,6 +69,7 @@ export class RecipesComponent implements OnInit {
       response => {
         // update recipes array
         let itemIndex = this.recipes.findIndex(item => item.id == response.id);
+        response.image = <string>this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + response.image);
         this.recipes[itemIndex] = response;
         this.processRecipeImages();
       }, error => {
