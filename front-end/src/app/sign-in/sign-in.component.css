@@ -1,0 +1,89 @@
+.container {
+  max-width: 400px;
+  margin: 50px auto;
+  border-style: solid;
+  border-color: black;
+  border-width: 5px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 2vw;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input {
+  font-family: inherit;
+}
+
+input[type="text"],
+input[type="password"] {
+  font-size: 25px;
+  width: 100%;
+  padding: 10px 10px 10px 20px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 50vw;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  font-size: 30px;
+  width: 100%;
+  padding: 10px;
+  background-color: #98FF98;
+  color: black;
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 50vw;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+
+input[type="submit"] {
+  font-size: 30px;
+  width: 100%;
+  padding: 10px;
+  background-color: #98FF98;
+  color: black;
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 50vw;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #8dde8d;
+  transform: scale(1.02);
+}
+
+.error-message {
+  text-align: left;
+  margin-left: 20px;
+  color: red;
+  font-size: 12px;
+}
+
+input.ng-invalid {
+  border-color: red;
+  border-width: 2px;
+}
+
+.signup-link {
+  text-align: center;
+}
+
+.signup-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
