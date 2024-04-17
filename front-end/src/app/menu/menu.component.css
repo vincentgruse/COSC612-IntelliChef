@@ -1,0 +1,5 @@
+a {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit text color */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
