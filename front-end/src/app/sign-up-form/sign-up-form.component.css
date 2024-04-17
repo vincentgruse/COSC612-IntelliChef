@@ -1,0 +1,80 @@
+.container {
+  max-width: 400px;
+  margin: 50px auto;
+  text-align: center; /* Center text content */
+  border-style: solid;
+  border-color: black;
+  border-width: 5px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 2vw;
+  box-shadow: 10px 5px #FFD53F;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input {
+  font-family: inherit;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  font-size: 25px;
+  width: 100%;
+  padding: 10px 10px 10px 20px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 50vw;
+  box-sizing: border-box;
+}
+input[type="submit"] {
+  font-size: 30px;
+  width: 100%;
+  padding: 10px;
+  background-color: #98FF98;
+  color: black;
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 50vw;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+
+input[type="submit"]:hover:not(:disabled) {
+  background-color: #8dde8d;
+  transform: scale(1.02);
+}
+
+input[type="submit"]:disabled {
+  background-color: #ccc; /* Grey background */
+  color: #666; /* Dark grey text */
+  cursor: not-allowed; /* Change cursor to indicate disabled state */
+}
+
+.error-message {
+  text-align: left;
+  margin-left: 20px;
+  color: red; /* Change the color of the error message */
+  font-size: 12px; /* Change the font size of the error message */
+}
+
+input.ng-invalid {
+  border-color: red; /* Change the border color of invalid input fields */
+  border-width: 2px;
+}
+
+.login-link {
+  text-align: center;
+}
+.login-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+.login-link a:hover {
+  text-decoration: underline;
+}

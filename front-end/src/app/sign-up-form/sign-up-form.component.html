@@ -1,0 +1,38 @@
+<app-menu></app-menu>
+<div class="container">
+  <h2>Sign Up</h2>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div>
+      <div *ngIf="signupForm.get('username')?.invalid && (signupForm.get('username')?.dirty || signupForm.get('username')?.touched)">
+        <div class="error-message">Username is required and must be between 3 and 16 characters long.</div>
+      </div>
+      <input type="text" id="username" formControlName="username" placeholder="Username" [class.ng-invalid]="signupForm.get('username')?.invalid && (signupForm.get('username')?.dirty || signupForm.get('username')?.touched)">
+    </div>
+
+    <div>
+      <div *ngIf="signupForm.get('email')?.invalid && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)">
+        <div class="error-message">Please enter a valid email address.</div>
+      </div>
+      <input type="email" id="email" formControlName="email" placeholder="Email Address" [class.ng-invalid]="signupForm.get('email')?.invalid && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)">
+    </div>
+
+    <div>
+      <div *ngIf="signupForm.get('password')?.invalid && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)">
+        <div class="error-message">Password is required and must be between 6 and 32 characters long, and contain at least one number and one special character.</div>
+      </div>
+      <input type="password" id="password" formControlName="password" placeholder="Password" [class.ng-invalid]="signupForm.get('password')?.invalid && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)">
+    </div>
+
+    <div>
+      <div *ngIf="signupForm.get('confirmPassword')?.errors?.['passwordMismatch'] && (signupForm.get('confirmPassword')?.dirty || signupForm.get('confirmPassword')?.touched)">
+        <div class="error-message">Passwords do not match.</div>
+      </div>
+      <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm Password" [class.ng-invalid]="signupForm.get('confirmPassword')?.errors?.['passwordMismatch'] && (signupForm.get('confirmPassword')?.dirty || signupForm.get('confirmPassword')?.touched)">
+    </div>
+
+    <input type="submit" value="Sign Up" [disabled]="!signupForm.valid">
+  </form>
+  <div class="login-link">
+    Already have an account? <a href="#">Log in</a>
+  </div>
+</div>
