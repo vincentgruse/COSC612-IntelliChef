@@ -3,14 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from "./home/home.component";
 import { RecipesComponent } from "./recipes/recipes.component";
 import { RecipeDetailComponent } from "./recipe-detail/recipe-detail.component";
-import {SignupFormComponent} from "./sign-up-form/sign-up-form.component";
+import {SignUpComponent} from "./sign-up/sign-up.component";
+import {SignInComponent} from "./sign-in/sign-in.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: "home", component: HomeComponent},
   {path: "recipes", component: RecipesComponent},
   {path: "recipe/:id", component: RecipeDetailComponent},
-  {path: "sign-up-form", component: SignupFormComponent}
+  {path: "sign-up", component: SignUpComponent},
+  {path: "sign-in", component: SignInComponent}
 ];
 
 @NgModule({
