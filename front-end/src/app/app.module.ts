@@ -7,23 +7,22 @@ import { HttpClientModule} from "@angular/common/http";
 import { RecipesComponent } from './recipes/recipes.component';
 import {RecipeDetailComponent} from "./recipe-detail/recipe-detail.component";
 import {ReactiveFormsModule} from "@angular/forms";
-import { SignupFormComponent } from "./sign-up-form/sign-up-form.component";
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        RecipesComponent,
-        RecipeDetailComponent,
-        SignupFormComponent
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        HomeModule,
-        HttpClientModule
-    ],
-    providers: [],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    RecipesComponent,
+    RecipeDetailComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HomeModule,
+    HttpClientModule
+  ],
+  providers: [],
+  exports: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
