@@ -6,16 +6,20 @@ import { HomeModule} from "./home/home.module";
 import { HttpClientModule} from "@angular/common/http";
 import { RecipesComponent } from './recipes/recipes.component';
 import {RecipeDetailComponent} from "./recipe-detail/recipe-detail.component";
+import {ReactiveFormsModule} from "@angular/forms";
+import { SignupFormComponent } from "./sign-up-form/sign-up-form.component";
 
 @NgModule({
     declarations: [
         AppComponent,
         RecipesComponent,
-        RecipeDetailComponent
+        RecipeDetailComponent,
+        SignupFormComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
+        ReactiveFormsModule,
         HomeModule,
         HttpClientModule
     ],
