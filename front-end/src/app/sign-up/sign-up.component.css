@@ -8,7 +8,7 @@
   padding: 20px;
   background-color: white;
   border-radius: 2vw;
-  box-shadow: 10px 5px #FFD53F;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 h2 {
@@ -31,6 +31,7 @@ input[type="password"] {
   border-radius: 50vw;
   box-sizing: border-box;
 }
+
 input[type="submit"] {
   font-size: 30px;
   width: 100%;
@@ -52,7 +53,7 @@ input[type="submit"]:hover:not(:disabled) {
 
 input[type="submit"]:disabled {
   background-color: #ccc; /* Grey background */
-  color: #666; /* Dark grey text */
+  color: #665; /* Dark grey text */
   cursor: not-allowed; /* Change cursor to indicate disabled state */
 }
 
