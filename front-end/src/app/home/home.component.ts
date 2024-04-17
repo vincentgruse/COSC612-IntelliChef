@@ -11,6 +11,7 @@ import { Ingredient } from "../models/ingredient";
 export class HomeComponent implements OnInit {
   ingredients: Ingredient[] = []; // Array to store ingredients
   newIngredient: string = ''; // Input for new ingredient
+  showSignIn: boolean = false;
 
   constructor(
     private ingredientService: IngredientService,
@@ -41,5 +42,16 @@ export class HomeComponent implements OnInit {
   goToRecipes() {
     const ingredients = this.ingredients.map(ingredient => ingredient.name); // Extract names from Ingredient objects
     this.router.navigate(['/recipes'], { queryParams: { ingredients: ingredients.join(',') } });
+  }
+
+  showSignInPopup() {
+    // Implement your logic to check if the user is logged in
+    // For demonstration, let's assume userLoggedIn is a boolean indicating user's login status
+    const userLoggedIn = false; // Replace this with your actual logic to check login status
+
+    // If user is not logged in, show the sign-in popup
+    if (!userLoggedIn) {
+      this.showSignIn = true;
+    }
   }
 }
