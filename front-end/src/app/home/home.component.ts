@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
 import { IngredientService } from '../services/ingredient.service';
 import { Router } from "@angular/router";
 import { Ingredient } from "../models/ingredient";
+import {PopupService} from "../services/popup.service";
 
 @Component({
   selector: 'app-home',
@@ -11,11 +12,12 @@ import { Ingredient } from "../models/ingredient";
 export class HomeComponent implements OnInit {
   ingredients: Ingredient[] = []; // Array to store ingredients
   newIngredient: string = ''; // Input for new ingredient
-  showSignIn: boolean = false;
+  userLoggedIn: boolean = false;
 
   constructor(
     private ingredientService: IngredientService,
-    private router: Router
+    private router: Router,
+    private popupService: PopupService
   ) { }
 
   ngOnInit() {
@@ -45,13 +47,9 @@ export class HomeComponent implements OnInit {
   }
 
   showSignInPopup() {
-    // Implement your logic to check if the user is logged in
-    // For demonstration, let's assume userLoggedIn is a boolean indicating user's login status
-    const userLoggedIn = false; // Replace this with your actual logic to check login status
-
     // If user is not logged in, show the sign-in popup
-    if (!userLoggedIn) {
-      this.showSignIn = true;
+    if (!this.userLoggedIn) {
+      this.popupService.openPopup();
     }
   }
 }

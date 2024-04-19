@@ -10,6 +10,9 @@
       <div class="input-container">
         <!-- Input field for adding new ingredients -->
         <input type="text" placeholder="Add an ingredient..." [(ngModel)]="newIngredient" (keyup.enter)="addIngredient()">
+        <div *ngIf="!this.userLoggedIn">
+          <app-sign-in></app-sign-in>
+        </div>
         <!-- Button to add the ingredient -->
         <div type="submit" class="search-button" (click)="addIngredient()">
           <img src="assets/search-icon.png" alt="Add" class="search-icon" height="45" width="45">

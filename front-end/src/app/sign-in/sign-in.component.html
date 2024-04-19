@@ -1,10 +1,13 @@
 <div class="container">
-  <h2>Login</h2>
-  <form action="/login" method="post">
-    <input type="text" id="username" name="username" placeholder="Username">
-    <input type="password" id="password" name="password" placeholder="Password">
-    <input type="submit" value="Login">
-  </form>
+  <h2 mat-dialog-title>Login</h2>
+  <div mat-dialog-content>
+    <form action="/login" method="post">
+      <input type="text" id="username" name="username" placeholder="Username">
+      <input type="password" id="password" name="password" placeholder="Password">
+      <input type="submit" value="Login">
+    </form>
+  </div>
+
   <div class="signup-link">
     New to Intellichef? <a href="/sign-up">Join now!</a>
   </div>

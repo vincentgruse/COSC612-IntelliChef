@@ -6,6 +6,8 @@ import {MenuComponent} from "../menu/menu.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SignUpComponent} from "../sign-up/sign-up.component";
 import {SignInComponent} from "../sign-in/sign-in.component";
+import {MatDialogActions, MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
+import {MatButton} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -23,7 +25,11 @@ import {SignInComponent} from "../sign-in/sign-in.component";
     RouterModule,
     NgOptimizedImage,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions,
+    MatButton
   ]
 })
 export class HomeModule { }
