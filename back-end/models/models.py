@@ -9,7 +9,7 @@ book_authors = Table(
     'recipe_ingredient', Base.metadata,
     Column('recipe_id', ForeignKey('recipes.id'), primary_key=True),
     Column('ingredient_id', ForeignKey('ingredients.id'), primary_key=True)
-                     )
+)
 
 
 class Recipe(Base):
@@ -34,3 +34,15 @@ class Ingredient(Base):
     created_by = Column(Integer, default=0)
     created_on = Column(DateTime, default=datetime.now)
     recipes = relationship("Recipe", secondary="recipe_ingredient", back_populates='ingredients')
+
+
+class User(Base):
+    __tablename__ = 'user'
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    email = Column(String(500))
+    name = Column(String(500))
+    username = Column(String(500))
+    password = Column(String(500))
+    created_on = Column(DateTime, default=datetime.now)
+    type = Column(Integer, default=0)
