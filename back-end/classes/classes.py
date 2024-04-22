@@ -11,6 +11,13 @@ class BaseIngredient(BaseModel):
     image: str
 
 
+class BaseRecipeCreate(BaseModel):
+    name: str
+    id: int
+    description: str
+    instructions: str
+
+
 class BaseRecipe(BaseModel):
     name: str
     id: int
