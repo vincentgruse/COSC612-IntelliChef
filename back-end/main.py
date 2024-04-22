@@ -6,7 +6,7 @@ from utils.database import engine
 from models import models
 
 
-app = FastAPI()
+app = FastAPI(title="IntelliChef")
 app.include_router(receipyRoute.router)
 app.include_router(userRoute.router)
 models.Base.metadata.create_all(bind=engine)
