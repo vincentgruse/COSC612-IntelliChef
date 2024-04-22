@@ -9,18 +9,23 @@
   <h1>{{ recipe.name }}</h1>
   <img [src]="recipe.image" alt="Recipe Image">
   <p class="recipe-description">{{ recipe.description }}</p>
-  <ng-container *ngIf="recipe.ingredients && recipe.ingredients.length > 0 ; else elseCondition">
+  <ng-container *ngIf="recipe.ingredients && recipe.ingredients.length > 0; else elseCondition">
     <h2>Ingredients</h2>
     <ul class="ingredients">
       <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient?.name }}</li>
     </ul>
   </ng-container>
   <ng-template #elseCondition>
-    Ingredients not available
+    <p>Ingredients not available</p>
   </ng-template>
-  <h2>Instructions</h2>
-  <ol class="instructions">
-    <li>{{ recipe.instructions }}</li>
-  </ol>
+  <ng-container *ngIf="recipe.instructions; else elseConditionInstruction">
+    <h2>Instructions</h2>
+    <ol class="instructions">
+      <li>{{ recipe.instructions }}</li>
+    </ol>
+  </ng-container>
+  <ng-template #elseConditionInstruction>
+    <p>Instructions not available</p>
+  </ng-template>
 </div>
 

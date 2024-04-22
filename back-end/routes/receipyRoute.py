@@ -5,7 +5,7 @@ from fastapi.params import Query
 from starlette import status
 
 import models.models
-from classes.classes import BaseRecipe, BaseIngredient
+from classes.classes import BaseRecipe, BaseIngredient, BaseRecipeCreate
 from sqlalchemy.orm import Session, joinedload
 from typing import Annotated
 
@@ -71,7 +71,7 @@ async def create_Ingredient(baseIngredient: BaseIngredient, db: db_dependency):
 async def create_recipe(
         db: db_dependency,
         ingredients: list[int] = Query(...),
-        base_recipe: BaseRecipe = Depends(),
+        base_recipe: BaseRecipeCreate = Depends(),
         file: UploadFile = File(...)
 ):
     print(base_recipe.dict(), file.content_type)
