@@ -62,8 +62,8 @@ async def create_user(new_user: BaseUser, db: db_dependency):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="username already exists")
     # creating a new user
     db_user = models.models.User(**new_user.dict())
-    db_user.password = db_user.password
-    # db_user.created_at = datetime.now()
+    db_user.password = get_hashed_password(db_user.password)
+    db_user.created_at = datetime.now()
     db.add(db_user)
     db.commit()
     return db_user
