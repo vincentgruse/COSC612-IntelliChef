@@ -4,7 +4,7 @@ export interface Recipe {
   name: string
   image: string//Base64 encoded image
   description: string
-  ingredients: string[]
+  ingredients: any[]
   instructions: string
   favourite: boolean
 }
