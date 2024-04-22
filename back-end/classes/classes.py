@@ -1,13 +1,7 @@
 from datetime import datetime
+from typing import List
 
 from pydantic import BaseModel
-
-
-class BaseRecipe(BaseModel):
-    name: str
-    id: int
-    description: str
-    instructions: str
 
 
 class BaseIngredient(BaseModel):
@@ -15,6 +9,14 @@ class BaseIngredient(BaseModel):
     name: str
     description: str
     image: str
+
+
+class BaseRecipe(BaseModel):
+    name: str
+    id: int
+    description: str
+    instructions: str
+    ingredients: List[BaseIngredient] = []
 
 
 class BaseUser(BaseModel):
