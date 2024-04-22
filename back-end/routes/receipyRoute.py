@@ -1,11 +1,12 @@
 import base64
 
 from fastapi import APIRouter, HTTPException, Depends, File, UploadFile, Form
+from fastapi.params import Query
 from starlette import status
 
 import models.models
 from classes.classes import BaseRecipe, BaseIngredient
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from typing import Annotated
 
 from utils.database import SessionLocal
@@ -66,16 +67,27 @@ async def create_Ingredient(baseIngredient: BaseIngredient, db: db_dependency):
 
 
 # only support the image files only.
-@router.post("/recipe")
+@router.post("/recipe", summary="Create recipes using ingredients if provided", status_code=status.HTTP_200_OK)
 async def create_recipe(
         db: db_dependency,
+        ingredients: list[int] = Query(...),
         base_recipe: BaseRecipe = Depends(),
         file: UploadFile = File(...)
 ):
     print(base_recipe.dict(), file.content_type)
-    db_recipe = models.models.Recipe(**base_recipe.dict())
+    # validating ingredients and adding it to recipe object
+    db_ingredients = []
+    if ingredients and len(ingredients) > 0:
+        for ingredient in ingredients:
+            db_ingredient = db.query(models.models.Ingredient).filter(models.models.Ingredient.id == (ingredient)).first()
+            if db_ingredient:
+                db_ingredients.append(db_ingredient)
 
-    # processing
+    db_recipe = models.models.Recipe(**base_recipe.dict())
+    if db_ingredients and len(db_ingredients) > 0:
+        db_recipe.ingredients = db_ingredients
+
+    # processing image data
     data = await file.read()
     rv = base64.b64encode(data)
     print(rv, "image data")
@@ -149,4 +161,6 @@ async def add_to_favourites(
 
 
 def get_recipe(recipe_id: int, db: db_dependency):
-    return db.query(models.models.Recipe).filter(models.models.Recipe.id == recipe_id).first()
+    result = db.query(models.models.Recipe).options(joinedload(models.models.Recipe.ingredients, innerjoin=True)).where(
+        models.models.Recipe.id == recipe_id).one()
+    return result
