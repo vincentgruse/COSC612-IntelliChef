@@ -1,5 +1,22 @@
+:host {
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.container h2 {
+  font-family: "Staatliches", sans-serif;
+  font-size: 40px;
+}
+
 .container {
-  max-width: 400px;
+  width: 500px;
   margin: 50px auto;
   border-style: solid;
   border-color: black;
@@ -11,16 +28,18 @@
 }
 
 h2 {
+  font-family: "Staatliches", sans-serif;
   text-align: center;
   margin-bottom: 20px;
 }
 
 input {
-  font-family: inherit;
+  font-family: "Staatliches", sans-serif;
 }
 
 input[type="text"],
 input[type="password"] {
+  font-family: "Staatliches", sans-serif;
   font-size: 25px;
   width: 100%;
   padding: 10px 10px 10px 20px;
@@ -31,20 +50,7 @@ input[type="password"] {
 }
 
 input[type="submit"] {
-  font-size: 30px;
-  width: 100%;
-  padding: 10px;
-  background-color: #98FF98;
-  color: black;
-  border-style: solid;
-  border-color: black;
-  border-width: 3px;
-  border-radius: 50vw;
-  cursor: pointer;
-  transition: transform 0.5s ease;
-}
-
-input[type="submit"] {
+  font-family: "Staatliches", sans-serif;
   font-size: 30px;
   width: 100%;
   padding: 10px;
