@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
   showSignInPopup() {
     // If user is not logged in, show the sign-in popup
     if (!this.userLoggedIn) {
-      this.popupService.openPopup();
+      this.popupService.openSignInPopup();
     }
   }
 }
