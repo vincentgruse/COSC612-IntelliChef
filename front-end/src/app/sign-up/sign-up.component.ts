@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { User } from "../models/user";
+import { PopupService } from "../services/popup.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -7,13 +9,13 @@ import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
-  signupForm: FormGroup = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9]{6,16}')]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,32}$')])
-  });
+  signupForm!: FormGroup;
+  user: User = { username:'', password: '', email: '' };
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private popupService: PopupService
+  ) { }
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
@@ -25,10 +27,7 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.signupForm.valid) {
-      // Handle form submission
-      console.log(this.signupForm.value);
-    }
+    this.popupService.submitFormData(this.signupForm, this.user);
   }
 
   passwordMatchValidator(formGroup: FormGroup) {
