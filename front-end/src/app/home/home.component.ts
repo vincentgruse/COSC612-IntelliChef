@@ -3,6 +3,7 @@ import { IngredientService } from '../services/ingredient.service';
 import { Router } from "@angular/router";
 import { Ingredient } from "../models/ingredient";
 import {PopupService} from "../services/popup.service";
+import {AuthenticationService} from "../services/authentication.service";
 
 @Component({
   selector: 'app-home',
@@ -17,11 +18,17 @@ export class HomeComponent implements OnInit {
   constructor(
     private ingredientService: IngredientService,
     private router: Router,
-    private popupService: PopupService
+    private popupService: PopupService,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit() {
     localStorage.removeItem("ingredients"); // Clear ingredients from local storage on component initialization
+    this.userLoggedIn = this.isLoggedIn();
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
   }
 
   // Add new ingredient to the list
