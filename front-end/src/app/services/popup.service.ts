@@ -8,7 +8,11 @@ import { SignInComponent } from "../sign-in/sign-in.component";
 export class PopupService {
   constructor(private dialog: MatDialog) { }
 
-  openPopup() {
+  openSignInPopup() {
     this.dialog.open(SignInComponent);
+  }
+
+  closePopup() {
+    this.dialog.closeAll();
   }
 }
