@@ -69,22 +69,6 @@ input[type="submit"]:hover {
   transform: scale(1.02);
 }
 
-.error-message {
-  text-align: left;
-  margin-left: 20px;
-  color: red;
-  font-size: 12px;
-}
-
-input.ng-invalid {
-  border-color: red;
-  border-width: 2px;
-}
-
-.signup-link {
-  text-align: center;
-}
-
 .signup-link a {
   color: #007bff;
   text-decoration: none;
