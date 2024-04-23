@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IngredientService } from '../services/ingredient.service';
 import { Router } from "@angular/router";
 import { Ingredient } from "../models/ingredient";
