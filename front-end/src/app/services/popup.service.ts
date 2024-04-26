@@ -22,26 +22,29 @@ export class PopupService {
 
   submitFormData(form: FormGroup, user: any) {
     if (form.valid) {
-      // Update user object
+      // Concatenate first name and last name into one string and assign it to user.name
+      user.name = form.value.firstName + ' ' + form.value.lastName;
       user.username = form.value.username;
       user.email = form.value.email;
       user.password = form.value.password;
 
       // Send data to backend
-      this.http.post<any>(this.apiURL + "/users", user)
+      this.http.post<any>(this.apiURL + "/user", user)
         .subscribe(
           response => {
             // Handle successful response from backend
             console.log('Backend response:', response);
+
+            // Handle form submission
+            console.log(user);
+            this.router.navigate(['/sign-in']);
           },
           error => {
             // Handle error response from backend
             console.error('Error:', error);
           }
         );
-      // Handle form submission
-      console.log(user);
-      this.router.navigate(['/sign-in']);
     }
   }
+
 }
