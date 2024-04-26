@@ -10,7 +10,7 @@ import { PopupService } from "../services/popup.service";
 })
 export class SignUpComponent implements OnInit {
   signupForm!: FormGroup;
-  user: User = { username:'', password: '', email: '' };
+  user: User = { id: 0, name: '', username:'', password: '', email: '', type: 0};
 
   constructor(
     private fb: FormBuilder,
@@ -19,6 +19,8 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
+      firstName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(16)]],
+      lastName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(16)]],
       username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(16)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(32)]],
@@ -27,6 +29,12 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit() {
+    // Concatenate first name and last name
+    const firstName = this.signupForm.get('firstName')?.value;
+    const lastName = this.signupForm.get('lastName')?.value;
+    this.user.name = `${firstName} ${lastName}`;
+
+    // Pass the form data to the service
     this.popupService.submitFormData(this.signupForm, this.user);
   }
 
