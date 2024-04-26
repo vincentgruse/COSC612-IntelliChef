@@ -6,17 +6,25 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthenticationService {
   private apiURL = 'http://localhost:8000';
-  private userStatus = false;
+  isAuthenticated = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  // Method to check if the user is logged in
-  isLoggedIn(): boolean {
-    return this.userStatus;
+  checkAuthentication(): boolean {
+    return this.isAuthenticated;
   }
 
-  // Method to log out the user
-  logout(): void {
-    this.userStatus = false;
+  login(username: string, password: string) {
+    const user = { username, password };
+
+    // Send data to backend and return the observable
+    return this.http.post<any>(this.apiURL + "/login", user);
+  }
+
+  logout() {
+    this.isAuthenticated = false;
+    sessionStorage.removeItem('auth_token');
   }
 }
