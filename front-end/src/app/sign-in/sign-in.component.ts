@@ -30,14 +30,23 @@ export class SignInComponent {
       this.authService.login(username, password) // This returns an Observable
         .subscribe(response => {
           // Handle successful login (navigate to a different route)
+
+          // Check if response contains a token
+          const token = response?.token; // Use optional chaining to handle missing token
+          if (token) {
+            sessionStorage.setItem('auth_token', token);
+          } else {
+            // Handle case where response lacks a token (e.g., error message)
+            this.errorMessage = 'Login successful, but token missing. Please contact support.';
+            console.warn('Login response: Token missing.');
+          }
+
           this.errorMessage = '';
           this.router.navigate(['/home']);
         }, error => {
           this.errorMessage = 'Invalid username or password';
           console.error('Login Error:', error);
         });
-    } else {
-      // Handle form validation errors
     }
   }
 }
