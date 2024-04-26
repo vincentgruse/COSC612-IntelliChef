@@ -49,24 +49,26 @@ input[type="password"] {
   box-sizing: border-box;
 }
 
-input[type="submit"] {
+button {
   font-family: "Staatliches", sans-serif;
-  font-size: 30px;
+  font-size: 25px;
   width: 100%;
-  padding: 10px;
+  padding: 15px; /* Increase padding for better visual */
   background-color: #98FF98;
-  color: black;
-  border-style: solid;
-  border-color: black;
-  border-width: 3px;
-  border-radius: 50vw;
+  color: black; /* Change text color */
+  border: none; /* Remove border */
+  border-radius: 50px; /* Adjust border radius as needed */
   cursor: pointer;
-  transition: transform 0.5s ease;
+  transition: background-color 0.3s ease; /* Add transition effect */
 }
 
-input[type="submit"]:hover {
-  background-color: #8dde8d;
-  transform: scale(1.02);
+button:hover {
+  background-color: #8dde8d; /* Change background color on hover */
+}
+
+.signup-link {
+  text-align: center;
+  margin: 5px;
 }
 
 .signup-link a {
