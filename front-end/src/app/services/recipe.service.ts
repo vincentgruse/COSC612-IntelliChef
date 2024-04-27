@@ -21,6 +21,10 @@ export class RecipeService {
     return this.http.get<Recipe[]>(this.apiURL + "/recipes");
   }
 
+  uploadRecipeImage(recipeId: string, formData: FormData): Observable<any> {
+    return this.http.post<any>(this.apiURL + "/recipe/" + recipeId + "/upload-image", formData);
+  }
+
   updateFavourite(recipe_id: number, favourite: number): Observable<Recipe> {
     // using a form to send values
     const body = new FormData();
