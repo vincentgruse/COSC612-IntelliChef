@@ -1,17 +1,15 @@
 from fastapi import FastAPI, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
-from routes import receipyRoute
+from routes import receipyRoute, dataRoute
 from routes import userRoute
 from utils.database import engine
 from models import models
 
-
 app = FastAPI(title="IntelliChef")
 app.include_router(receipyRoute.router)
 app.include_router(userRoute.router)
+app.include_router(dataRoute.router)
 models.Base.metadata.create_all(bind=engine)
-
-
 
 origins = ["*"]
 
@@ -32,5 +30,3 @@ async def root():
 @app.get("/ping")
 async def root():
     return "Pong"
-
-
