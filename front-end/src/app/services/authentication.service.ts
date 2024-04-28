@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from "@angular/router";
 import { BehaviorSubject } from 'rxjs'; // Import BehaviorSubject
 
 @Injectable({
@@ -12,8 +11,7 @@ export class AuthenticationService {
   isAuthenticated$ = this.isAuthenticatedSubject.asObservable(); // Expose observable
 
   constructor(
-    private http: HttpClient,
-    private router: Router
+    private http: HttpClient
   ) { }
 
   checkAuthentication(): boolean {
