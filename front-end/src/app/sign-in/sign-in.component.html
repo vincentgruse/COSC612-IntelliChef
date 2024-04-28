@@ -1,0 +1,14 @@
+<div class="container">
+  <h2 mat-dialog-title>Login</h2>
+  <div mat-dialog-content>
+    <form [formGroup]="signInForm" (ngSubmit)="submitForm()">
+      <input type="text" formControlName="username" placeholder="Username">
+      <input type="password" formControlName="password" placeholder="Password">
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <div class="signup-link">
+    New to Intellichef? <a href="/sign-up">Join now!</a>
+  </div>
+</div>

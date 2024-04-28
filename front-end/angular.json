@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "intellichef:build:production"
+              "buildTarget": "intellichef:build:production"
             },
             "development": {
-              "browserTarget": "intellichef:build:development"
+              "buildTarget": "intellichef:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "intellichef:build"
+            "buildTarget": "intellichef:build"
           }
         },
         "test": {

@@ -33,6 +33,20 @@
   border-radius: 2vw;
 }
 
+.image-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.success-message {
+  color: #98FF98;
+}
+
+.error-message {
+  color: #FF5732;
+}
+
 .recipe-detail p,
 .recipe-detail ul,
 .recipe-detail ol {

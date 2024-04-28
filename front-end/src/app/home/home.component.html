@@ -9,7 +9,7 @@
       <!-- Container for adding ingredients -->
       <div class="input-container">
         <!-- Input field for adding new ingredients -->
-        <input type="text" placeholder="Add an ingredient..." [(ngModel)]="newIngredient" (keyup.enter)="addIngredient()">
+        <input type="text" placeholder="Add an ingredient..." [(ngModel)]="newIngredient" (keyup.enter)="addIngredient()" (click)="showSignInPopup()">
         <!-- Button to add the ingredient -->
         <div type="submit" class="search-button" (click)="addIngredient()">
           <img src="assets/search-icon.png" alt="Add" class="search-icon" height="45" width="45">
@@ -34,8 +34,7 @@
 
     <!-- Container for the submit button -->
     <div class="submit-container">
-      <!-- Button to start cooking -->
-      <button type="button" (click)="goToRecipes()" class="submit-button">
+      <button type="button" (click)="userLoggedIn ? goToRecipes() : showSignInPopup()" class="submit-button">
         <img src="assets/submit-icon.png" alt="Submit" class="submit-icon">
         Start Cooking
       </button>
@@ -58,5 +57,3 @@
   <div class="border"></div>
   <div class="border"></div>
 </div>
-
-

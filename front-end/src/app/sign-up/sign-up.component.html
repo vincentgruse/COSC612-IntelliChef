@@ -1,7 +1,23 @@
-<app-menu></app-menu>
 <div class="container">
   <h2>Sign Up</h2>
   <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+    <div class="name-group">
+      <div>
+        <div *ngIf="signupForm.get('firstName')?.invalid && (signupForm.get('firstName')?.dirty || signupForm.get('firstName')?.touched)">
+          <div class="error-message">First Name is required and must be between 1 and 16 characters long.</div>
+        </div>
+        <input type="text" id="firstName" formControlName="firstName" placeholder="First Name" [class.ng-invalid]="signupForm.get('firstName')?.invalid && (signupForm.get('firstName')?.dirty || signupForm.get('firstName')?.touched)">
+      </div>
+
+      <div>
+        <div *ngIf="signupForm.get('lastName')?.invalid && (signupForm.get('lastName')?.dirty || signupForm.get('lastName')?.touched)">
+          <div class="error-message">Last Name is required and must be between 1 and 16 characters long.</div>
+        </div>
+        <input type="text" id="lastName" formControlName="lastName" placeholder="Last Name" [class.ng-invalid]="signupForm.get('lastName')?.invalid && (signupForm.get('lastName')?.dirty || signupForm.get('lastName')?.touched)">
+      </div>
+    </div>
+
     <div>
       <div *ngIf="signupForm.get('username')?.invalid && (signupForm.get('username')?.dirty || signupForm.get('username')?.touched)">
         <div class="error-message">Username is required and must be between 3 and 16 characters long.</div>
@@ -33,6 +49,6 @@
     <input type="submit" value="Sign Up" [disabled]="!signupForm.valid">
   </form>
   <div class="login-link">
-    Already have an account? <a href="#">Log in</a>
+    Already have an account? <a href="/sign-in">Log in</a>
   </div>
 </div>

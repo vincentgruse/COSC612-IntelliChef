@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Recipe } from '../models/recipe';
 
@@ -19,6 +19,10 @@ export class RecipeService {
   // Fetch recipes from the backend server
   getRecipes(): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(this.apiURL + "/recipes");
+  }
+
+  uploadRecipeImage(recipeId: string, formData: FormData): Observable<any> {
+    return this.http.post<any>(this.apiURL + "/recipe/" + recipeId + "/upload-image", formData);
   }
 
   updateFavourite(recipe_id: number, favourite: number): Observable<Recipe> {

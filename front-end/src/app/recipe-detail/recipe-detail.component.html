@@ -4,10 +4,25 @@
   <button (click)="goBack()" class="back-button">Back to Recipes</button>
 </div>
 
-<!-- Recipe Details -->
 <div *ngIf="recipe" class="recipe-detail">
   <h1>{{ recipe.name }}</h1>
   <img [src]="recipe.image" alt="Recipe Image">
+
+  <div *ngIf="isEmptyBase64" class="image-upload">
+    <label> Be the first to upload a picture of {{ recipe.name }}</label>
+    <input type="file" class="file-input" *ngIf="!uploadSuccess" (change)="onFileSelected($event)" #fileUpload>
+    <button *ngIf="!uploadSuccess" (click)="uploadImage()" class="submit-button {{ selectedFile?.name ? '' : 'disabled-button' }}">Submit</button>
+    <div class="file-upload">
+      {{selectedFile?.name || "No file uploaded yet."}}
+      <div *ngIf="uploadSuccess" class="success-message">
+        Image uploaded successfully!
+      </div>
+      <div *ngIf="uploadError" class="error-message">
+        Error uploading image: {{ uploadErrorMessage }}
+      </div>
+    </div>
+  </div>
+
   <p class="recipe-description">{{ recipe.description }}</p>
   <ng-container *ngIf="recipe.ingredients && recipe.ingredients.length > 0; else elseCondition">
     <h2>Ingredients</h2>
@@ -28,4 +43,3 @@
     <p>Instructions not available</p>
   </ng-template>
 </div>
-

@@ -1,7 +1,9 @@
-import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IngredientService } from '../services/ingredient.service';
 import { Router } from "@angular/router";
 import { Ingredient } from "../models/ingredient";
+import {PopupService} from "../services/popup.service";
+import {AuthenticationService} from "../services/authentication.service";
 
 @Component({
   selector: 'app-home',
@@ -11,14 +13,22 @@ import { Ingredient } from "../models/ingredient";
 export class HomeComponent implements OnInit {
   ingredients: Ingredient[] = []; // Array to store ingredients
   newIngredient: string = ''; // Input for new ingredient
+  userLoggedIn: boolean = false;
 
   constructor(
     private ingredientService: IngredientService,
-    private router: Router
+    private router: Router,
+    private popupService: PopupService,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit() {
     localStorage.removeItem("ingredients"); // Clear ingredients from local storage on component initialization
+    this.userLoggedIn = this.isLoggedIn();
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.checkAuthentication();
   }
 
   // Add new ingredient to the list
@@ -41,5 +51,12 @@ export class HomeComponent implements OnInit {
   goToRecipes() {
     const ingredients = this.ingredients.map(ingredient => ingredient.name); // Extract names from Ingredient objects
     this.router.navigate(['/recipes'], { queryParams: { ingredients: ingredients.join(',') } });
+  }
+
+  showSignInPopup() {
+    // If user is not logged in, show the sign-in popup
+    if (!this.userLoggedIn) {
+      this.popupService.openSignInPopup();
+    }
   }
 }
