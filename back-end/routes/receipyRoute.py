@@ -5,11 +5,13 @@ from fastapi.params import Query
 from starlette import status
 
 import models.models
+import ml_model
 from classes.classes import BaseRecipe, BaseIngredient, BaseRecipeCreate
 from sqlalchemy.orm import Session, joinedload
-from typing import Annotated
+from typing import Annotated, List
 
 from utils.database import SessionLocal
+from ml_model.calculate_similarities import retrieve_best_items, load_initial_data
 
 router = APIRouter()
 
@@ -160,7 +162,30 @@ async def add_to_favourites(
     return db_recipe
 
 
+@router.get('/recommendations/{recipe_id}', response_model=list[int])
+async def get_receipts(recipe_id: int, db: db_dependency):
+    return get_recommendations(recipe_id, db)
+
+
+@router.post('/recommendations')
+async def initialize_recommendations():
+    result = await load_initial_data()
+    if result:
+        return 1
+    else:
+        return 0
+
+
 def get_recipe(recipe_id: int, db: db_dependency):
     result = db.query(models.models.Recipe).options(joinedload(models.models.Recipe.ingredients, innerjoin=True)).where(
         models.models.Recipe.id == recipe_id).one()
     return result
+
+
+def get_recommendations(recipe_id: int, db: db_dependency):
+    if recipe_id and recipe_id > 0:
+        result = db.query(models.models.Recipe).filter(models.models.Recipe.id == (recipe_id)).first()
+        if result is not None:
+            return retrieve_best_items(10, result.row_index)
+    else:
+        raise HTTPException(status_code=400, detail="Incorrect recipe Id")
