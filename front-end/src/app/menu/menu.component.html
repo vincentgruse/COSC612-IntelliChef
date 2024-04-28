@@ -9,9 +9,10 @@
       <ul>
         <!-- Navigation links for user options -->
         <li><a href="/home">Home</a></li>
-        <li><a href="#">Favorites</a></li>
+        <li><a href="/favorites">Favorites</a></li>
         <li><a href="#">Account Settings</a></li>
-        <li><a href="#">Logout</a></li>
+        <!-- Display sign-in or logout button with dynamic text -->
+        <li (click)="handleAuthenticationAction()" style="cursor: pointer;">{{ buttonText }}</li>
       </ul>
     </div>
   </div>

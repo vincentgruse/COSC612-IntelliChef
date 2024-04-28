@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { IngredientService } from '../services/ingredient.service';
 import { Router } from "@angular/router";
 import { Ingredient } from "../models/ingredient";
-import {PopupService} from "../services/popup.service";
-import {AuthenticationService} from "../services/authentication.service";
+import { PopupService } from "../services/popup.service";
+import { AuthenticationService } from "../services/authentication.service";
 
 @Component({
   selector: 'app-home',
