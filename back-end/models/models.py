@@ -21,6 +21,7 @@ class Recipe(Base):
     instructions = Column(String(1000))
     image = Column(String(500))
     favourite = Column(Integer)
+    row_index = Column(Integer)
     ingredients = relationship("Ingredient", secondary="recipe_ingredient", back_populates='recipes')
 
 
