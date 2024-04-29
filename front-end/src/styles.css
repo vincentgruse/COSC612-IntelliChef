@@ -1,4 +1,5 @@
 /* Global styles and font imports */
+@import 'ngx-toastr/toastr';
 @import url('https://fonts.googleapis.com/css2?family=Jomhuria&family=Sriracha&family=Staatliches&display=swap');
 * {
   margin: 0;

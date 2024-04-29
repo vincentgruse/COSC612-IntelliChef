@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router'; // Import Router for navigation
+import { Router } from '@angular/router';
+import {ToastrService} from "ngx-toastr"; // Import Router for navigation
 
 @Component({
   selector: 'app-sign-in',
@@ -15,7 +16,8 @@ export class SignInComponent {
   constructor(
     private authService: AuthenticationService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     this.signInForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -35,6 +37,7 @@ export class SignInComponent {
           // Check if response contains a token
           const token = response?.access_token; // Use optional chaining to handle missing token
           if (token) {
+            this.toastr.success('Logged In', 'Success')
             sessionStorage.setItem('auth_token', token);
             this.authService.isAuthenticated = true;
             this.authService.successful_login()
