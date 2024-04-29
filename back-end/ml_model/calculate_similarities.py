@@ -32,7 +32,9 @@ async def load_initial_data() -> list[any]:
         columns=['row_index', 'name', 'minutes', 'submitted', 'tags', 'nutrition', 'steps', 'description', 'ingredients'],
         engine='pyarrow'
     )
-    df = df.set_index('row_index')
+    # duplicate row index column
+    df['row_index_index'] = df['row_index']
+    df = df.set_index('row_index_index')
     # df = df.rename({'id': 'original_id'}, axis=1)
     print('detail data columns: ', df.columns)
     print('detail data shape: ', df.shape)
