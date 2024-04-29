@@ -20,7 +20,7 @@
 
     <div>
       <div *ngIf="signupForm.get('username')?.invalid && (signupForm.get('username')?.dirty || signupForm.get('username')?.touched)">
-        <div class="error-message">Username is required and must be between 3 and 16 characters long.</div>
+        <div class="error-message">Username is required and must be between 6 and 16 characters long.</div>
       </div>
       <input type="text" id="username" formControlName="username" placeholder="Username" [class.ng-invalid]="signupForm.get('username')?.invalid && (signupForm.get('username')?.dirty || signupForm.get('username')?.touched)">
     </div>
@@ -34,7 +34,7 @@
 
     <div>
       <div *ngIf="signupForm.get('password')?.invalid && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)">
-        <div class="error-message">Password is required and must be between 6 and 32 characters long, and contain at least one number and one special character.</div>
+        <div class="error-message">Password is required and must be between 8 and 32 characters long, and contain at least one number and one special character.</div>
       </div>
       <input type="password" id="password" formControlName="password" placeholder="Password" [class.ng-invalid]="signupForm.get('password')?.invalid && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)">
     </div>
