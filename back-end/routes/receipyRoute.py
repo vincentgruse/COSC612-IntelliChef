@@ -81,7 +81,8 @@ async def create_recipe(
     db_ingredients = []
     if ingredients and len(ingredients) > 0:
         for ingredient in ingredients:
-            db_ingredient = db.query(models.models.Ingredient).filter(models.models.Ingredient.id == (ingredient)).first()
+            db_ingredient = db.query(models.models.Ingredient).filter(
+                models.models.Ingredient.id == (ingredient)).first()
             if db_ingredient:
                 db_ingredients.append(db_ingredient)
 
@@ -176,9 +177,46 @@ async def initialize_recommendations():
         return 0
 
 
+@router.get('/find_ingredient_name_like/{ingredient_name}')
+async def find_ingredient_name_like(ingredient_name: str, db: db_dependency):
+    return db.query(models.models.Ingredient).filter(
+        models.models.Ingredient.name.like('%' + (ingredient_name) + '%')).all()
+
+
+@router.get('/recipes_by_ingredeints/')
+async def recipes_by_ingredeints(db: db_dependency, ingredients: list[int] = Query(...)):
+    return await get_direct_recipes_for_ingredients(db, ingredients)
+
+
+@router.get('/recommended_recipes_by_ingredients/', summary='Get recommended recipes by ingredients')
+async def recommended_recipes_by_ingredients(db: db_dependency, ingredients: list[int] = Query(...)):
+    recommendations: [int] = []
+    direct_recipes = await get_direct_recipes_for_ingredients(db, ingredients)
+    # now get recommendations from the model
+    if direct_recipes is not None:
+        for recipe in direct_recipes:
+            recommendations.extend(retrieve_best_items(10, int(recipe.row_index)))
+            # get the recipes based on the row_indexes
+        return (db.query(models.models.Recipe)
+                .filter(models.models.Recipe.row_index.in_(recommendations)).all())
+
+
+async def get_direct_recipes_for_ingredients(db, ingredients) -> list[models.models.Recipe]:
+    recipes = []
+    result = (db.query(models.models.Ingredient)
+              .options(joinedload(models.models.Ingredient.recipes, innerjoin=True))
+              .where(models.models.Ingredient.id.in_(ingredients)).all())
+    if result is not None:
+        for x in result:
+            print("data: ", x)
+            recipes.extend(x.recipes)
+    return recipes
+
+
 def get_recipe(recipe_id: int, db: db_dependency):
-    result = db.query(models.models.Recipe).options(joinedload(models.models.Recipe.ingredients, innerjoin=True)).where(
-        models.models.Recipe.id == recipe_id).first()
+    result = (db.query(models.models.Recipe)
+              .options(joinedload(models.models.Recipe.ingredients, innerjoin=True))
+              .where(models.models.Recipe.id == recipe_id).first())
     return result
 
 
