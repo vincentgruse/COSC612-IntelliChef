@@ -8,13 +8,15 @@ import { RecipesComponent } from './recipes/recipes.component';
 import {RecipeDetailComponent} from "./recipe-detail/recipe-detail.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import { SignupFormComponent } from "./sign-up-form/sign-up-form.component";
+import { FavoritesComponent } from './favorites/favorites.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         RecipesComponent,
         RecipeDetailComponent,
-        SignupFormComponent
+        SignupFormComponent,
+        FavoritesComponent
     ],
     imports: [
         BrowserModule,
