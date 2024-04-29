@@ -2,7 +2,7 @@ import numpy as np  # linear algebra
 import pandas as pd  # data processing, CSV file I/O (e.g. pd.read_csv)
 from io import BytesIO
 
-array = None
+array = []
 detail_array = None
 df = None
 detail_df = None
@@ -32,6 +32,7 @@ async def load_initial_data() -> list[any]:
         columns=['row_index', 'name', 'minutes', 'submitted', 'tags', 'nutrition', 'steps', 'description', 'ingredients'],
         engine='pyarrow'
     )
+    df = df.set_index('row_index')
     # df = df.rename({'id': 'original_id'}, axis=1)
     print('detail data columns: ', df.columns)
     print('detail data shape: ', df.shape)
@@ -59,21 +60,21 @@ def print_recommendations(index_array: []):
 
 def retrieve_best_items(n_scores: int, row_no: int) -> list[int]:
     # retrieve row for the item
+    global array
     max_indexes = []
-    return_value = []
     if get_recipe_cosine_data():
-        data_row = get_recipe_cosine_data()[row_no]
-        result = list(filter(lambda x: x < 1, data_row))
+        cosine_row = array[row_no]
+        result = list(filter(lambda x: x < 1, cosine_row))
         # print('Recipe: ', df.loc[row_no, 'name'],' \tsteps: ',df.loc[row_no, 'steps'])
         # print('result: ',result)
         for i in range(n_scores):
             # data_row = data_row[data_row<1]
             max_value = max(result)
-            max_indexes.append(data_row.index(max_value))
+            # print('max_value: ', max_value)
+            max_indexes.append(cosine_row.index(max_value))
             # remove max value to find next maximum
             result.remove(max_value)
-        return_value = np.unique(max_indexes)
-        print('\nRecommendations: ', )
-        print_recommendations(return_value)
-    return return_value
-# result = retrieve_best_items(20, 2100)
+        print('\nRecommendations for: ', df.loc[row_no, 'name'])
+        print('\nRecommendations indexes: ', max_indexes)
+        print_recommendations(max_indexes)
+    return max_indexes
