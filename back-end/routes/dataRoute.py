@@ -12,7 +12,7 @@ from sqlalchemy.orm import Session, joinedload
 from typing import Annotated, List
 
 from utils.database import SessionLocal
-from ml_model.calculate_similarities import retrieve_best_items, load_initial_data, get_recipe_detail_data
+from ml_model.calculate_similarities import get_recipe_detail_data
 
 router = APIRouter()
 
