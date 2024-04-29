@@ -3,7 +3,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { AuthenticationService } from './services/authentication.service';
-import { of } from 'rxjs';
 
 describe('AuthGuard', () => {
   let guard: AuthGuard;
