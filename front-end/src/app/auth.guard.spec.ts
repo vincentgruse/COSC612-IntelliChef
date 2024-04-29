@@ -1,18 +1,53 @@
 import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthGuard } from './auth.guard';
+import { AuthenticationService } from './services/authentication.service';
+import { of } from 'rxjs';
 
 describe('AuthGuard', () => {
-  let authGuard: AuthGuard; // Declare a variable to hold the guard instance
+  let guard: AuthGuard;
+  let authServiceSpy: jasmine.SpyObj<AuthenticationService>;
+  let router: Router;
+  let routeSnapshot: ActivatedRouteSnapshot;
+  let stateSnapshot: RouterStateSnapshot;
 
   beforeEach(() => {
+    authServiceSpy = jasmine.createSpyObj('AuthenticationService', ['checkAuthentication']);
     TestBed.configureTestingModule({
-      providers: [AuthGuard] // Include AuthGuard in the testing module
+      imports: [RouterTestingModule],
+      providers: [
+        AuthGuard,
+        { provide: AuthenticationService, useValue: authServiceSpy }
+      ]
     });
-
-    authGuard = TestBed.inject(AuthGuard); // Inject the created instance
+    guard = TestBed.inject(AuthGuard);
+    router = TestBed.inject(Router);
+    routeSnapshot = {} as ActivatedRouteSnapshot;
+    stateSnapshot = {} as RouterStateSnapshot;
   });
 
   it('should be created', () => {
-    expect(authGuard).toBeTruthy(); // Now check the injected instance
+    expect(guard).toBeTruthy();
+  });
+
+  it('should return true and allow access if authentication check is successful', () => {
+    authServiceSpy.checkAuthentication.and.returnValue(true);
+
+    const result = guard.canActivate(routeSnapshot, stateSnapshot);
+
+    expect(result).toBeTrue();
+    expect(authServiceSpy.checkAuthentication).toHaveBeenCalled();
+  });
+
+  it('should return false and navigate to login page if authentication check fails', () => {
+    authServiceSpy.checkAuthentication.and.returnValue(false);
+    const navigateSpy = spyOn(router, 'navigate');
+
+    const result = guard.canActivate(routeSnapshot, stateSnapshot);
+
+    expect(result).toBeFalse();
+    expect(authServiceSpy.checkAuthentication).toHaveBeenCalled();
+    expect(navigateSpy).toHaveBeenCalledWith(['/sign-in']);
   });
 });
