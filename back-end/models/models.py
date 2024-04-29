@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship
 
 from utils.database import Base
 
-book_authors = Table(
+recipe_ingredient = Table(
     'recipe_ingredient', Base.metadata,
     Column('recipe_id', ForeignKey('recipes.id'), primary_key=True),
     Column('ingredient_id', ForeignKey('ingredients.id'), primary_key=True)
