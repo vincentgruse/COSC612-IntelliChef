@@ -7,7 +7,7 @@ import { HttpClientModule} from "@angular/common/http";
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeDetailComponent } from "./recipe-detail/recipe-detail.component";
 import { ReactiveFormsModule } from "@angular/forms";
-import {ToastrModule} from "ngx-toastr";
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
   declarations: [
