@@ -8,6 +8,7 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeDetailComponent } from "./recipe-detail/recipe-detail.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import {ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {ToastrModule} from "ngx-toastr";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HomeModule,
