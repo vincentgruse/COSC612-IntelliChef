@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
   // Navigate to recipes page with selected ingredients
   goToRecipes() {
     const ingredients = this.ingredients.map(ingredient => ingredient.name); // Extract names from Ingredient objects
-    this.router.navigate(['/recipes'], { queryParams: { ingredients: ingredients.join(',') } });
+    this.router.navigate(['/protected/recipes'], { queryParams: { ingredients: ingredients.join(',') } });
   }
 
   showSignInPopup() {

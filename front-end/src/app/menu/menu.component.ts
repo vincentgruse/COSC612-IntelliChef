@@ -20,6 +20,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     // Subscribe to the observable
     this.authService.isAuthenticated$.subscribe(isAuthenticated => {
+      console.log('isAuthenticated: ', isAuthenticated)
       this.buttonText = isAuthenticated ? 'Log out' : 'Sign In';
     });
   }
@@ -27,6 +28,10 @@ export class MenuComponent implements OnInit {
   // Toggle dropdown visibility
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
+  }
+
+  logout(){
+    this.authService.logout();
   }
 
   // Close dropdown

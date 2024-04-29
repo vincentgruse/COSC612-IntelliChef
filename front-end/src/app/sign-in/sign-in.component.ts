@@ -30,10 +30,15 @@ export class SignInComponent {
 
       this.authService.login(username, password)
         .subscribe(response => {
-          const token = response?.token; // Use optional chaining to handle missing token
+          // Handle successful login (navigate to a different route)
+
+          // Check if response contains a token
+          const token = response?.access_token; // Use optional chaining to handle missing token
           if (token) {
             sessionStorage.setItem('auth_token', token);
-            this.router.navigate(['/home']);
+            this.authService.isAuthenticated = true;
+            this.authService.successful_login()
+            this.router.navigate(['/protected/home']);
           } else {
             this.errorMessage = 'Login successful, but token missing. Please contact support.';
             console.warn('Login response: Token missing.');

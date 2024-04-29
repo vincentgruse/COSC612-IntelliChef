@@ -8,24 +8,11 @@ import {SignInComponent} from "./sign-in/sign-in.component";
 import {AuthGuard} from "./auth.guard";
 
 const routes: Routes = [
+
   {
-    path: '',
-    redirectTo: 'home',
+    path: "",
+    redirectTo: '/protected/home',
     pathMatch: 'full'
-  },
-  {
-    path: "home",
-    component: HomeComponent
-  },
-  {
-    path: "recipes",
-    component: RecipesComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: "recipe/:id",
-    component: RecipeDetailComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: "sign-up",
@@ -34,6 +21,35 @@ const routes: Routes = [
   {
     path: "sign-in",
     component: SignInComponent
+  },
+  {
+    path: 'protected',
+    canActivate: [AuthGuard],
+    children: [
+      {path: '', redirectTo: '/home', pathMatch: 'full'},
+      {
+        path: "home",
+        component: HomeComponent
+      },
+      {
+        path: "recipes",
+        component: RecipesComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: "recipe/:id",
+        component: RecipeDetailComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: "sign-up",
+        component: SignUpComponent
+      },
+      {
+        path: "sign-in",
+        component: SignInComponent
+      }
+    ]
   }
 ];
 
@@ -41,4 +57,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

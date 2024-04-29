@@ -54,7 +54,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   processRecipeImage(): void {
-    if (this.recipe) {
+    if (this.recipe && this.recipe.image) {
       this.isEmptyBase64 = this.recipe.image.length === 0;
       if (!this.isEmptyBase64) {
         this.recipe.image = <string>this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + this.recipe.image);
@@ -105,6 +105,6 @@ export class RecipeDetailComponent implements OnInit {
 
   // Method to navigate back to the recipes component
   goBack(): void {
-    this.router.navigate(['/recipes']);
+    this.router.navigate(['/protected/recipes']);
   }
 }
