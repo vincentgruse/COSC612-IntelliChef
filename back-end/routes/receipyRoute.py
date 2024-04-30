@@ -215,8 +215,8 @@ async def get_direct_recipes_for_ingredients(db, ingredients) -> list[models.mod
 
 def get_recipe(recipe_id: int, db: db_dependency):
     result = (db.query(models.models.Recipe)
-              .options(joinedload(models.models.Recipe.ingredients, innerjoin=True))
-              .where(models.models.Recipe.id == recipe_id).first())
+              .options(joinedload(models.models.Recipe.ingredients))
+              .filter(models.models.Recipe.id == recipe_id).first())
     return result
 
 
