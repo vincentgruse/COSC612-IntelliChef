@@ -6,6 +6,7 @@ import { PopupService } from "../services/popup.service";
 import { AuthenticationService } from "../services/authentication.service";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import {ToastrService} from "ngx-toastr";
+import {RecipeService} from "../services/recipe.service";
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,8 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private popupService: PopupService,
     private authService: AuthenticationService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private recipeService: RecipeService
   ) { }
 
   ngOnInit() {
@@ -43,12 +45,30 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  cookIngredients(){
+    this.ingredientService.ingredients_id_list = this.main_list_ingredients
+    this.recipeService.get_recipe_recommendations(this.ingredientService.ingredients_id_list).subscribe(
+      recipes => {
+        if (recipes){
+          this.recipeService.recommended_recipes = recipes
+        }
+        if (!recipes.length){
+          this.toastrService.warning('No recommendations found','Try again')
+        }
+      }
+    )
+    this.goToRecipes()
+  }
+
   searchIngredient() {
     if (this.newIngredient && this.newIngredient.trim() !== '') {
       this.ingredientService.getIngredientsFromNameLike(this.newIngredient.trim()).subscribe(
         response => {
           if (response) {
             this.ingredients = response;
+            if (response.length == 0){
+              this.toastrService.warning('No ingredients found for '+ this.newIngredient.trim(),'Try again')
+            }
           }
         }, error => {
           this.toastrService.error('Error in getting Ingredients')
@@ -68,7 +88,7 @@ export class HomeComponent implements OnInit {
 
   // Navigate to recipes page with selected ingredients
   goToRecipes() {
-    const ingredients = this.ingredients.map(ingredient => ingredient.name); // Extract names from Ingredient objects
+    const ingredients = this.recipeService.recommended_recipes.map(ingredient => ingredient.name); // Extract names from Ingredient objects
     this.router.navigate(['/protected/recipes'], { queryParams: { ingredients: ingredients.join(',') } });
   }
 

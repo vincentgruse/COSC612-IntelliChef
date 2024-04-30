@@ -3,6 +3,7 @@ import { Ingredient } from '../models/ingredient';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ToastrService} from "ngx-toastr";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 const BACKEND_URL = 'http://localhost:8000'
 @Injectable({
@@ -10,6 +11,7 @@ const BACKEND_URL = 'http://localhost:8000'
 })
 export class IngredientService {
   private localStorageKey = 'ingredients';
+  private _ingredients_id_list: Ingredient[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -77,5 +79,14 @@ export class IngredientService {
       }
     );
 
+  }
+
+
+  get ingredients_id_list(): Ingredient[] {
+    return this._ingredients_id_list;
+  }
+
+  set ingredients_id_list(value: Ingredient[]) {
+    this._ingredients_id_list = value;
   }
 }

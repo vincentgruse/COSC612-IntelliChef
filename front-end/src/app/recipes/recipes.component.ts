@@ -5,6 +5,7 @@ import { IngredientService } from "../services/ingredient.service";
 import { Ingredient } from "../models/ingredient";
 import { Router } from "@angular/router";
 import { DomSanitizer } from '@angular/platform-browser';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-recipes',
@@ -20,23 +21,26 @@ export class RecipesComponent implements OnInit {
     private router: Router,
     private recipeService: RecipeService,
     private ingredientService: IngredientService,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private toastrService: ToastrService
   ) {
-    this.ingredientService.getIngredientsFromDatabase().subscribe(
-      ingredients => {
-        this.ingredients = ingredients;
-      },
-      error => {
-        console.error('Error fetching ingredients:', error);
+    this.recipeService.get_recipe_recommendations(this.ingredientService.ingredients_id_list).subscribe(
+      recipes => {
+        if (recipes){
+          this.recipes = recipes;
+          this.processRecipeImages();
+        }
+      },error => {
+        this.toastrService.error('Error fetching ingredients', 'try again');
       }
-    );
+    )
   }
 
   ngOnInit() {
-    this.recipeService.getRecipes().subscribe(recipes => {
+    /*this.recipeService.getRecipes().subscribe(recipes => {
       this.recipes = recipes;
       this.processRecipeImages();
-    });
+    });*/
   }
 
   goBack() {
