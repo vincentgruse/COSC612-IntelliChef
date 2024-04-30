@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Ingredient } from '../models/ingredient';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {ToastrService} from "ngx-toastr";
 
 const BACKEND_URL = 'http://localhost:8000'
 @Injectable({
@@ -16,7 +17,7 @@ export class IngredientService {
   addIngredient(ingredient: Ingredient) {
     const ingredients = this.getIngredients();
     ingredients.push(ingredient);
-    this.saveIngredients(ingredients);
+    // this.saveIngredients(ingredients);
   }
 
   // Read operation
@@ -34,12 +35,21 @@ export class IngredientService {
     return this.http.get<Ingredient[]>(BACKEND_URL + '/ingredients', httpOptions);
   }
 
+  getIngredientsFromNameLike(name: string): Observable<Ingredient[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    return this.http.get<Ingredient[]>(BACKEND_URL + '/find_ingredient_name_like/'+name, httpOptions);
+  }
+
   // Delete operation
   deleteIngredient(index: number) {
     const ingredients = this.getIngredients();
     if (index >= 0 && index < ingredients.length) {
       ingredients.splice(index, 1);
-      this.saveIngredients(ingredients);
+      // this.saveIngredients(ingredients);
     }
   }
 
