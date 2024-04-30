@@ -5,14 +5,6 @@
     <button (click)="goBack()" class="back-button">Back to Home</button>
   </div>
 
-  <h1>Ingredients</h1>
-  <div class="ingredient-list">
-    <div *ngIf="ingredients.length === 0" class="no-ingredients-message">No ingredients found.</div>
-    <div *ngFor="let ingredient of ingredients; index as i" class="list-item">
-      <span class="ingredient-text">{{ ingredient.name }}</span>
-    </div>
-  </div>
-
   <h1>Recipes</h1>
   <div class="recipe-container">
     <div *ngIf="recipes.length === 0" class="no-recipes-message">No recipes available.</div>
