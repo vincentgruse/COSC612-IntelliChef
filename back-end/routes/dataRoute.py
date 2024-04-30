@@ -60,6 +60,7 @@ async def save_to_db(db: db_dependency):
                         db_ingredient.name = ingredient_name
                         recipe.ingredients.append(db_ingredient)
             db_array.append(recipe)
+    print('Ready to commit')
     db.add_all(db_array)
     db.commit()
     print('recipe details saved to db')
