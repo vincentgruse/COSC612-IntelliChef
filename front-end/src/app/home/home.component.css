@@ -95,6 +95,7 @@ ul {
   flex-wrap: wrap;
   justify-content: center;
   max-width: 500px;
+  padding-bottom: 5px;
 }
 
 .list-item {
@@ -151,6 +152,24 @@ ul {
   transition: transform 0.5s ease;
 }
 
+.clear-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 30px;
+  background-color: #98FF98;
+  color: black;
+  border: 3px solid black;
+  border-radius: 50vw;
+  box-shadow: 5px 5px #000000;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  transition: transform 0.5s ease;
+}
+
 .submit-icon {
   margin-right: 10px;
 }
@@ -158,4 +177,8 @@ ul {
 .submit-button:hover {
   background-color: #8dde8d;
   transform: scale(1.05);
+}
+
+.ingredient-text {
+  cursor: pointer;
 }

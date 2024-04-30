@@ -4,6 +4,8 @@ import { Router } from "@angular/router";
 import { Ingredient } from "../models/ingredient";
 import { PopupService } from "../services/popup.service";
 import { AuthenticationService } from "../services/authentication.service";
+import {error} from "@angular/compiler-cli/src/transformers/util";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-home',
@@ -12,6 +14,7 @@ import { AuthenticationService } from "../services/authentication.service";
 })
 export class HomeComponent implements OnInit {
   ingredients: Ingredient[] = []; // Array to store ingredients
+  main_list_ingredients: Ingredient[] = []; // Array to store ingredients
   newIngredient: string = ''; // Input for new ingredient
   userLoggedIn: boolean = false;
 
@@ -19,7 +22,8 @@ export class HomeComponent implements OnInit {
     private ingredientService: IngredientService,
     private router: Router,
     private popupService: PopupService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit() {
@@ -34,17 +38,32 @@ export class HomeComponent implements OnInit {
   // Add new ingredient to the list
   addIngredient() {
     if (this.newIngredient.trim() !== '') {
-      const newIngredient: Ingredient = { name: this.newIngredient.trim() };
-      this.ingredientService.addIngredient(newIngredient);
       this.newIngredient = '';
       this.ingredients = this.ingredientService.getIngredients(); // Update ingredients list
     }
   }
 
+  searchIngredient() {
+    if (this.newIngredient && this.newIngredient.trim() !== '') {
+      this.ingredientService.getIngredientsFromNameLike(this.newIngredient.trim()).subscribe(
+        response => {
+          if (response) {
+            this.ingredients = response;
+          }
+        }, error => {
+          this.toastrService.error('Error in getting Ingredients')
+        })
+    }
+  }
+
   // Delete ingredient from the list
   deleteIngredient(index: number) {
-    this.ingredientService.deleteIngredient(index);
-    this.ingredients = this.ingredientService.getIngredients(); // Update ingredients list
+    this.ingredients = this.ingredients.filter(item => item.id !== index);// Update ingredients list
+  }
+
+  deleteMainIngredient(index: number) {
+    this.main_list_ingredients = this.main_list_ingredients.filter(item => item.id !== index);// Update ingredients list
+
   }
 
   // Navigate to recipes page with selected ingredients
@@ -58,5 +77,15 @@ export class HomeComponent implements OnInit {
     if (!this.userLoggedIn) {
       this.popupService.openSignInPopup();
     }
+  }
+
+  addToMainIngredientList(id: number) {
+    this.main_list_ingredients.push( this.ingredients.filter(item => item.id == id)[0])
+    this.ingredients = this.ingredients.filter(item => item.id !== id);// Update ingredients list
+
+  }
+
+  clearIngredients() {
+    this.ingredients = []
   }
 }

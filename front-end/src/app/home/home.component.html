@@ -6,10 +6,26 @@
     <!-- Subheader for input instructions -->
     <h2>Start typing ingredients...</h2>
     <div class="top-content-container">
+      <ng-container *ngIf="main_list_ingredients && main_list_ingredients.length > 0">
+        <div class="list-container">
+          <ul>
+            <!-- Loop through each ingredient in the list -->
+            <li *ngFor="let ingredient of main_list_ingredients; index as i" class="list-item">
+              <!-- Display the name of the ingredient -->
+              <span class="ingredient-text">{{ ingredient.name }}</span>
+              <!-- Button to delete the ingredient -->
+              <div class="delete-button" (click)="deleteMainIngredient(ingredient.id)">
+                <img src="assets/delete-icon.png" alt="Delete" class="delete-icon" height="25" width="25">
+              </div>
+            </li>
+          </ul>
+        </div>
+      </ng-container>
       <!-- Container for adding ingredients -->
-      <div class="input-container">
+        <div class="input-container">
         <!-- Input field for adding new ingredients -->
-        <input type="text" placeholder="Add an ingredient..." [(ngModel)]="newIngredient" (keyup.enter)="addIngredient()">
+        <input type="text" placeholder="Add an ingredient..."
+               [(ngModel)]="newIngredient" (keyup.enter)="searchIngredient()">
         <!-- Button to add the ingredient -->
         <div type="submit" class="search-button" (click)="addIngredient()">
           <img src="assets/search-icon.png" alt="Add" class="search-icon" height="45" width="45">
@@ -18,19 +34,24 @@
     </div>
 
     <!-- Container for displaying the list of ingredients -->
-    <div class="list-container">
-      <ul>
-        <!-- Loop through each ingredient in the list -->
-        <li *ngFor="let ingredient of ingredients; index as i" class="list-item">
-          <!-- Display the name of the ingredient -->
-          <span class="ingredient-text">{{ ingredient.name }}</span>
-          <!-- Button to delete the ingredient -->
-          <div class="delete-button" (click)="deleteIngredient(i)">
-            <img src="assets/delete-icon.png" alt="Delete" class="delete-icon" height="25" width="25">
-          </div>
-        </li>
-      </ul>
-    </div>
+    <ng-container *ngIf="ingredients && ingredients.length> 0">
+      <div class="list-container">
+        <div>
+          <button (click)=clearIngredients() class="clear-button">Clear</button>
+        </div>
+        <ul>
+          <!-- Loop through each ingredient in the list -->
+          <li *ngFor="let ingredient of ingredients; index as i" class="list-item">
+            <!-- Display the name of the ingredient -->
+            <span class="ingredient-text" (click)="addToMainIngredientList(ingredient.id)">{{ ingredient.name }}</span>
+            <!-- Button to delete the ingredient -->
+            <div class="delete-button" (click)="deleteIngredient(ingredient.id)">
+              <img src="assets/delete-icon.png" alt="Delete" class="delete-icon" height="25" width="25">
+            </div>
+          </li>
+        </ul>
+      </div>
+    </ng-container>
 
     <!-- Container for the submit button -->
     <div class="submit-container">

@@ -8,6 +8,7 @@ import {SignUpComponent} from "../sign-up/sign-up.component";
 import {SignInComponent} from "../sign-in/sign-in.component";
 import {MatDialogActions, MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
 import {MatButton} from "@angular/material/button";
+import {ToastrModule, ToastrService} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {MatButton} from "@angular/material/button";
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,
-    MatButton
+    MatButton,
+    ToastrModule
   ]
 })
 export class HomeModule { }
