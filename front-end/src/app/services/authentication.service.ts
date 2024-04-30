@@ -15,12 +15,18 @@ export class AuthenticationService {
     private http: HttpClient,
     private router: Router
   ) {
-    if(sessionStorage.getItem('auth_token')){
+    this.refreshAuthDetails();
+  }
+
+  private refreshAuthDetails() {
+    if (sessionStorage.getItem('auth_token')) {
       this.isAuthenticated = true
+      this.isAuthenticatedSubject.next(true);
     }
   }
 
   checkAuthentication(): boolean {
+    this.refreshAuthDetails();
     return this.isAuthenticatedSubject.getValue(); // Access value from BehaviorSubject
   }
 
