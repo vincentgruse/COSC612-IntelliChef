@@ -84,7 +84,7 @@ describe('RecipeService', () => {
     const formData = new FormData();
     formData.append('image', new File([''], 'test.jpg'));
 
-    service.uploadRecipeImage(recipeId, formData).subscribe(response => {
+    service.uploadRecipeImage(formData).subscribe(response => {
       expect(response).toBeTruthy();
     });
 

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Recipe } from "../models/recipe";
 import { RecipeService } from "../services/recipe.service";
 import { DomSanitizer } from "@angular/platform-browser";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-recipe-individual',
@@ -23,7 +24,8 @@ export class RecipeDetailComponent implements OnInit {
     private recipeService: RecipeService,
     private router: Router,
     private route: ActivatedRoute,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit() {
@@ -54,11 +56,8 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   processRecipeImage(): void {
-    if (this.recipe) {
-      this.isEmptyBase64 = this.recipe.image.length === 0;
-      if (!this.isEmptyBase64) {
-        this.recipe.image = <string>this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + this.recipe.image);
-      }
+    if (this.recipe && this.recipe.image && this.recipe.image.length > 0) {
+      this.recipe.image = <string>this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + this.recipe.image);
     }
   }
 
@@ -80,8 +79,9 @@ export class RecipeDetailComponent implements OnInit {
     if (this.selectedFile && this.recipe.id && this.base64Image) {
       const recipeIdString = this.recipe.id.toString();
       const formData = new FormData();
-      formData.append("image", this.base64Image); // Use the base64Image property
-      this.recipeService.uploadRecipeImage(recipeIdString, formData).subscribe(
+      formData.append("file", this.selectedFile); // Use the base64Image property
+      formData.append("recipe_id", recipeIdString); // Use the base64Image property
+      this.recipeService.uploadRecipeImage(formData).subscribe(
         response => {
           console.log('Image uploaded successfully');
           this.uploadSuccess = true;
@@ -89,6 +89,7 @@ export class RecipeDetailComponent implements OnInit {
           this.uploadErrorMessage = '';
           // Refresh the recipe after uploading image (optional)
           this.loadRecipe(recipeIdString);
+          this.toastrService.success('Image uploaded', 'success');
         },
         error => {
           console.error('Error uploading image:', error);

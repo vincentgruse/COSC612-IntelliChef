@@ -8,7 +8,7 @@
   <h1>{{ recipe.name }}</h1>
   <img [src]="recipe.image" alt="Recipe Image">
 
-  <div *ngIf="isEmptyBase64" class="image-upload">
+  <div *ngIf="!recipe.image" class="image-upload">
     <label> Be the first to upload a picture of {{ recipe.name }}</label>
     <input type="file" class="file-input" *ngIf="!uploadSuccess" (change)="onFileSelected($event)" #fileUpload>
     <button *ngIf="!uploadSuccess" (click)="uploadImage()" class="submit-button {{ selectedFile?.name ? '' : 'disabled-button' }}">Submit</button>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Recipe } from '../models/recipe';
 import {Ingredient} from "../models/ingredient";
@@ -23,8 +23,11 @@ export class RecipeService {
     return this.http.get<Recipe[]>(this.apiURL + "/recipes");
   }
 
-  uploadRecipeImage(recipeId: string, formData: FormData): Observable<any> {
-    return this.http.post<any>(this.apiURL + "/recipe/" + recipeId + "/upload-image", formData);
+  uploadRecipeImage(formData: FormData): Observable<any> {
+    // 'Content-Type: multipart/form-data'
+    let headers = new HttpHeaders();
+    headers= headers.append('content-type', ' multipart/form-data');
+    return this.http.patch<any>(this.apiURL + "/recipe/", formData);
   }
 
   updateFavourite(recipe_id: number, favourite: number): Observable<Recipe> {
