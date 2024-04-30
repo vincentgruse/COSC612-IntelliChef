@@ -3,9 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from "./home/home.component";
 import { RecipesComponent } from "./recipes/recipes.component";
 import { RecipeDetailComponent } from "./recipe-detail/recipe-detail.component";
-import {SignUpComponent} from "./sign-up/sign-up.component";
-import {SignInComponent} from "./sign-in/sign-in.component";
-import {AuthGuard} from "./auth.guard";
+import { SignUpComponent } from "./sign-up/sign-up.component";
+import { SignInComponent } from "./sign-in/sign-in.component";
+import { AuthGuard } from "./auth.guard";
+import { FavouritesComponent } from "./favourites/favourites.component";
 
 const routes: Routes = [
 
@@ -48,6 +49,11 @@ const routes: Routes = [
       {
         path: "sign-in",
         component: SignInComponent
+      },
+      {
+        path: "favourites",
+        component: FavouritesComponent,
+        canActivate: [AuthGuard]
       }
     ]
   }

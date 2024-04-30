@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HomeModule} from "./home/home.module";
 import { HttpClientModule} from "@angular/common/http";
 import { RecipesComponent } from './recipes/recipes.component';
+import { FavouritesComponent } from "./favourites/favourites.component";
 import { RecipeDetailComponent } from "./recipe-detail/recipe-detail.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { ToastrModule } from "ngx-toastr";
@@ -14,7 +15,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
   declarations: [
     AppComponent,
     RecipesComponent,
-    RecipeDetailComponent
+    RecipeDetailComponent,
+    FavouritesComponent
   ],
   imports: [
     BrowserModule,

@@ -54,7 +54,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   processRecipeImage(): void {
-    if (this.recipe && this.recipe.image) {
+    if (this.recipe) {
       this.isEmptyBase64 = this.recipe.image.length === 0;
       if (!this.isEmptyBase64) {
         this.recipe.image = <string>this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + this.recipe.image);
@@ -71,7 +71,7 @@ export class RecipeDetailComponent implements OnInit {
       reader.readAsDataURL(selectedFile); // Read the file as data URL
       reader.onload = (e: any) => {  // Handle load event
         this.selectedFile = selectedFile;  // Update selectedFile
-        this.base64Image = `data:image/jpg;base64,${e.target.result?.slice(22)}`;
+        this.base64Image = `${e.target.result?.slice(22)}`;
       };
     }
   }

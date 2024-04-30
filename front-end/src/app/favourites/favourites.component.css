@@ -1,0 +1,102 @@
+h1 {
+  text-align: center;
+  margin: 10px;
+}
+
+.list-container {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ingredient-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.list-item {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #FFD53F;
+  border-radius: 100vw;
+  margin: 3px;
+  padding: 2px 8px;
+}
+
+.recipe-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.recipe-item:hover {
+  transform: scale(1.05);
+}
+
+.recipe-item {
+  max-width: 500px;
+  border-color: black;
+  border-style: solid;
+  border-width: 5px;
+  margin: 15px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 2vw;
+  box-shadow: 10px 5px #FFD53F;
+  display: inline-block;
+  vertical-align: top;
+  transition: transform 0.5s ease;
+}
+
+.recipe-card {
+  text-align: center;
+}
+
+.recipe-item .star-image {
+  position: relative;
+  padding-top: 5px;
+  padding-left: 5px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer; /* Add cursor pointer for interaction */
+  z-index: 5;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.recipe-item .star-image:hover {
+  opacity: 1; /* Reduce opacity on hover for visual feedback */
+}
+
+.recipe-name {
+  font-size: 40px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.recipe-image {
+  display: block;
+  margin: 0 auto;
+  max-width: 90%;
+  height: auto;
+  border-radius: 1vw;
+}
+
+.recipe-description {
+  margin: 10px;
+  text-align: left;
+  font-size: 30px;
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .recipe-item {
+    width: calc(100% - 20px);
+  }
+}

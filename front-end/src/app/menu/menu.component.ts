@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { PopupService } from '../services/popup.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-menu',
@@ -14,7 +15,8 @@ export class MenuComponent implements OnInit {
   constructor(
     private elementRef: ElementRef,
     private authService: AuthenticationService,
-    private popupService: PopupService
+    private popupService: PopupService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -60,5 +62,9 @@ export class MenuComponent implements OnInit {
       // If not authenticated, open sign-in popup
       this.popupService.openSignInPopup();
     }
+  }
+
+  goToFavourites(): void {
+    this.router.navigate(['/protected/favourites']);
   }
 }
