@@ -4,6 +4,7 @@ import { SignInComponent } from "../sign-in/sign-in.component";
 import { HttpClient } from '@angular/common/http';
 import { FormGroup } from "@angular/forms";
 import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class PopupService {
   constructor(
     private dialog: MatDialog,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) { }
 
   openSignInPopup() {
@@ -33,15 +35,19 @@ export class PopupService {
         .subscribe(
           response => {
             // Handle successful response from backend
-            console.log('Backend response:', response);
+            if (response){
+              this.toastrService.success('User created', 'success')
+              console.log('Backend response:', response);
 
-            // Handle form submission
-            console.log(user);
-            this.router.navigate(['/sign-in']);
+              // Handle form submission
+              console.log(user);
+              this.router.navigate(['/sign-in']);
+            }
           },
           error => {
             // Handle error response from backend
             console.error('Error:', error);
+            this.toastrService.error('Error occurred', 'Please try again')
           }
         );
     }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { User } from "../models/user";
 import { PopupService } from "../services/popup.service";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-sign-up',
@@ -10,11 +11,21 @@ import { PopupService } from "../services/popup.service";
 })
 export class SignUpComponent implements OnInit {
   signupForm!: FormGroup;
-  user: User = { id: 0, name: '', username:'', password: '', email: '', type: 0};
+  user: User = { id: 0, name: '', username:'', password: '', email: '', type: 0, created_on: ''};
+// {
+//   "id": 0,
+//   "name": "string",
+//   "username": "string",
+//   "password": "string",
+//   "email": "string",
+//   "type": 0,
+//   "created_on": "2024-05-01T10:22:49.973309"
+// }
 
   constructor(
     private fb: FormBuilder,
-    private popupService: PopupService
+    private popupService: PopupService,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +44,7 @@ export class SignUpComponent implements OnInit {
     const firstName = this.signupForm.get('firstName')?.value;
     const lastName = this.signupForm.get('lastName')?.value;
     this.user.name = `${firstName} ${lastName}`;
+    this.user.created_on = <string>this.datePipe.transform(new Date(), 'yyyy-MM-ddTHH:mm:ss.SSSSSS')?.toString();
 
     // Pass the form data to the service
     this.popupService.submitFormData(this.signupForm, this.user);

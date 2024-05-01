@@ -5,4 +5,5 @@ export interface User {
   password: string
   email: string
   type: number
+  created_on: string
 }
