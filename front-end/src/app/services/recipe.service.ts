@@ -22,6 +22,9 @@ export class RecipeService {
   getRecipes(): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(this.apiURL + "/recipes");
   }
+  getFavouriteRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(this.apiURL + "/favourite_recipes");
+  }
 
   uploadRecipeImage(formData: FormData): Observable<any> {
     // 'Content-Type: multipart/form-data'

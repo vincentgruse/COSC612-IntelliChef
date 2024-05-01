@@ -21,7 +21,7 @@ export class FavouritesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.recipeService.getRecipes().subscribe(recipes => {
+    this.recipeService.getFavouriteRecipes().subscribe(recipes => {
       this.recipes = recipes;
       this.processRecipeImages();
     });

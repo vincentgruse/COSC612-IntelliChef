@@ -165,7 +165,12 @@ async def add_to_favourites(
 
 @router.get('/recommendations/{recipe_id}', response_model=list[int])
 async def get_receipts(recipe_id: int, db: db_dependency):
-    return get_recommendations(recipe_id, db)
+    return (get_recommendations(recipe_id, db))
+
+
+@router.get('/favourite_recipes')
+async def get_favourite_recipes(db: db_dependency):
+    return db.query(models.models.Recipe).filter(models.models.Recipe.favourite == 1).all()
 
 
 @router.post('/recommendations')
