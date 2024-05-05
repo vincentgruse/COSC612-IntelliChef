@@ -2,13 +2,19 @@
 <div class="content">
   <!-- Main content section -->
   <h1>HERE ARE YOUR FAVORITE RECIPES</h1>
-  <div class="recipe-container">
+  <div class="recipe-container" >
     <div *ngIf="recipes.length === 0" class="no-recipes-message">No recipes available.</div>
     <div *ngFor="let recipe of recipes" class="recipe-item">
-      <div *ngIf="!recipe.favourite" style=".recipe-card{visibility: collapse}"></div>
       <div *ngIf="recipe.favourite">
-        <img [src]="recipe?.favourite ? 'assets/star-filled.png' : 'assets/star-unfilled.png'"
-             alt="Favorite's star" class="star-image" (click)="toggleFavourite(recipe)">
+        <img [src]="'assets/star-filled.png'" alt="Favorite's star" class="star-image" (click)="toggleFavourite(recipe)">
+        <div class="recipe-card" (click)="goToRecipe(recipe.id)">
+          <h2 class="recipe-name">{{ recipe?.name }}</h2>
+          <img [src]="recipe?.image" alt="Recipe Image" class="recipe-image">
+          <p class="recipe-description">{{ recipe?.description }}</p>
+        </div>
+      </div>
+      <div *ngIf="!recipe.favourite">
+        <img [src]="'assets/star-unfilled.png'" alt="Favorite's star" class="star-image" (click)="toggleFavourite(recipe)">
         <div class="recipe-card" (click)="goToRecipe(recipe.id)">
           <h2 class="recipe-name">{{ recipe?.name }}</h2>
           <img [src]="recipe?.image" alt="Recipe Image" class="recipe-image">

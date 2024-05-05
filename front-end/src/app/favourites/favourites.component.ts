@@ -29,7 +29,7 @@ export class FavouritesComponent implements OnInit {
 
   goToRecipe(recipeId: any) {
     try {
-      this.router.navigate(['/recipe', recipeId]); // Navigate to recipe detail with ID
+      this.router.navigate(['protected/recipe', recipeId]); // Navigate to recipe detail with ID
     } catch (error) {
       console.error('Error navigating to recipe detail:', error);
     }

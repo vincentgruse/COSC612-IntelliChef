@@ -36,7 +36,7 @@
   <ng-container *ngIf="recipe.instructions; else elseConditionInstruction">
     <h2>Instructions</h2>
     <ol class="instructions">
-      <li>{{ recipe.instructions }}</li>
+      <li *ngFor="let instruction of recipe.instructions.split(','); let i = index">{{ instruction.trim() }}</li>
     </ol>
   </ng-container>
   <ng-template #elseConditionInstruction>
