@@ -14,7 +14,7 @@ export class MenuComponent implements OnInit {
 
   constructor(
     private elementRef: ElementRef,
-    private authService: AuthenticationService,
+    protected authService: AuthenticationService,
     private popupService: PopupService,
     private router: Router
   ) {}
@@ -66,5 +66,9 @@ export class MenuComponent implements OnInit {
 
   goToFavourites(): void {
     this.router.navigate(['/protected/favourites']);
+  }
+
+  goToAccountSettings(): void {
+    this.router.navigate(['/protected/account-settings']);
   }
 }

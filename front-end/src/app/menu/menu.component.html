@@ -1,6 +1,7 @@
 <div class="banner">
   <!-- Banner section displaying the application name -->
   <a href="/protected/home"><h3>Intellichef</h3></a>
+
   <!-- User icon with dropdown menu -->
   <div class="user-dropdown" (click)="toggleDropdown()">
     <img src="assets/user-icon.png" alt="User Icon" height="83" width="83">
@@ -9,8 +10,9 @@
       <ul>
         <!-- Navigation links for user options -->
         <li><a href="/protected/home">Home</a></li>
+        <!-- Display favorites and account settings only if authenticated -->
         <li (click)="goToFavourites()">Favorites</li>
-        <li><a href="#">Account Settings</a></li>
+        <li (click)="goToAccountSettings()">Account Settings</li>
         <!-- Display sign-in or logout button with dynamic text -->
         <li (click)="handleAuthenticationAction()" style="cursor: pointer;">{{ buttonText }}</li>
       </ul>
