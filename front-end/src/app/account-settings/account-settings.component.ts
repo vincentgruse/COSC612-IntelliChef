@@ -43,7 +43,8 @@ export class AccountSettingsComponent implements OnInit {
 
   // Method to convert user type from number to string
   getUserType(type: number): string {
-    return type === 0 ? 'General user' : 'Administrator';
+    console.log(type);
+    return type === 0 ? 'Administrator' : 'General User';
   }
 
   // Method to format date/time
