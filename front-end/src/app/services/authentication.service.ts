@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs'; // Import BehaviorSubject
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {BehaviorSubject, Observable} from 'rxjs'; // Import BehaviorSubject
 import {Router} from "@angular/router";
 
 @Injectable({
@@ -11,6 +11,7 @@ export class AuthenticationService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false); // Create BehaviorSubject
   isAuthenticated$ = this.isAuthenticatedSubject.asObservable(); // Expose observable
   private _isAuthenticated = false;
+
   constructor(
     private http: HttpClient,
     private router: Router
@@ -50,6 +51,12 @@ export class AuthenticationService {
     this.isAuthenticatedSubject.next(true); // Update BehaviorSubject on logout
   }
 
+  getUserInfo(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('auth_token')
+    });
+    return this.http.get<any>(this.apiURL + "/users/me", { headers });
+  }
 
   get isAuthenticated(): boolean {
     return <boolean>(sessionStorage.getItem('auth_token') && this._isAuthenticated);

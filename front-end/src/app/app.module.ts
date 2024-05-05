@@ -6,18 +6,20 @@ import { HomeModule} from "./home/home.module";
 import { HttpClientModule} from "@angular/common/http";
 import { RecipesComponent } from './recipes/recipes.component';
 import { FavouritesComponent } from "./favourites/favourites.component";
+import { AccountSettingsComponent } from "./account-settings/account-settings.component";
 import { RecipeDetailComponent } from "./recipe-detail/recipe-detail.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { ToastrModule } from "ngx-toastr";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import {DatePipe} from "@angular/common";
+import { DatePipe } from "@angular/common";
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipesComponent,
     RecipeDetailComponent,
-    FavouritesComponent
+    FavouritesComponent,
+    AccountSettingsComponent
   ],
   imports: [
     BrowserModule,

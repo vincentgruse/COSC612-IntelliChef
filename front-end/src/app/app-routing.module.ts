@@ -7,6 +7,7 @@ import { SignUpComponent } from "./sign-up/sign-up.component";
 import { SignInComponent } from "./sign-in/sign-in.component";
 import { AuthGuard } from "./auth.guard";
 import { FavouritesComponent } from "./favourites/favourites.component";
+import { AccountSettingsComponent } from "./account-settings/account-settings.component";
 
 const routes: Routes = [
 
@@ -53,6 +54,11 @@ const routes: Routes = [
       {
         path: "favourites",
         component: FavouritesComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: "account-settings",
+        component: AccountSettingsComponent,
         canActivate: [AuthGuard]
       }
     ]
