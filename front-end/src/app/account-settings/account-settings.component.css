@@ -1,0 +1,33 @@
+.account-settings {
+  width: 80%;
+  margin: 5% auto;
+  max-width: 40%;
+  text-align: center;
+  border-style: solid;
+  border-color: black;
+  border-width: 5px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 2vw;
+  box-shadow: 10px 5px #FFD53F;
+}
+
+.account-settings .label {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.account-settings h1 {
+  margin-bottom: 20px;
+  font-size: 70px;
+}
+
+.account-settings h2 {
+  font-size: 40px;
+  font-style: normal;
+}
+
+.account-settings p {
+  font-size: 30px;
+  margin-bottom: 20px;
+}

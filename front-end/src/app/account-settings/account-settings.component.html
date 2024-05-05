@@ -1,0 +1,33 @@
+<app-menu></app-menu>
+
+<div class="back-button-container">
+  <button (click)="goHome()" class="back-button">Back to Home</button>
+</div>
+
+<div class="account-settings">
+  <div class="user-info" *ngFor="let user of userInfo">
+    <h1>{{ user.name }}</h1>
+    <p><span class="label">Username:</span> {{ user.username }}</p>
+    <p><span class="label">Email:</span> {{ user.email }}</p>
+    <p><span class="label">Type:</span> {{ user.type }}</p>
+    <p><span class="label">Member since:</span> {{ user.created_on }}</p>
+  </div>
+</div>
+
+
+<div class="fluid-container">
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+</div>
