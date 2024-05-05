@@ -1,3 +1,7 @@
+.container {
+  position: relative;
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -148,7 +152,8 @@ ul {
   box-shadow: 5px 5px #000000;
   padding: 10px 20px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 15px;
+  margin-bottom: 20px;
   transition: transform 0.5s ease;
 }
 
@@ -165,8 +170,8 @@ ul {
   box-shadow: 5px 5px #000000;
   padding: 10px 20px;
   cursor: pointer;
-  margin-top: 20px;
-  margin-bottom: 5px;
+  margin-top: 15px;
+  margin-bottom: 20px;
   transition: transform 0.5s ease;
 }
 
