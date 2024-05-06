@@ -48,6 +48,7 @@ export class SignInComponent {
           }
         }, error => {
           this.errorMessage = 'Invalid username or password';
+          this.toastr.error('Invalid username or password', 'Unsuccessful')
           console.error('Login Error:', error);
         });
     }
