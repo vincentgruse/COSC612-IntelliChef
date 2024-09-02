@@ -26,3 +26,9 @@ cd front-end
 npm i
 ng s
 ```
+## Data processing
+
+Data was gathered from kaggle.com.
+(Source [Link](https://www.kaggle.com/datasets/shuyangli94/food-com-recipes-and-user-interactions))
+
+Pre-process it and train a machine-learning model to recommend recipes
