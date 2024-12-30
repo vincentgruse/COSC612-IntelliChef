@@ -3,15 +3,18 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Recipe } from '../models/recipe';
 import {Ingredient} from "../models/ingredient";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
-  private apiURL = 'http://localhost:8000';
+  private apiURL = '';
   private _recommended_recipes: Recipe[] = []
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.apiURL = environment.apiUrl
+  }
 
   // Fetch a single recipe by ID from the backend server
   getRecipeById(recipeId: string): Observable<Recipe> {

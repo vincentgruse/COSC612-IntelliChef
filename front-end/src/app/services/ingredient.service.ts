@@ -4,16 +4,20 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ToastrService} from "ngx-toastr";
 import {error} from "@angular/compiler-cli/src/transformers/util";
+import { environment } from "../../environments/environment";
 
-const BACKEND_URL = 'http://localhost:8000'
 @Injectable({
   providedIn: 'root'
 })
 export class IngredientService {
   private localStorageKey = 'ingredients';
   private _ingredients_id_list: Ingredient[] = [];
+  private apiURL = ''
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.apiURL = environment.apiUrl
+
+  }
 
   // Create operation
   addIngredient(ingredient: Ingredient) {
@@ -34,7 +38,7 @@ export class IngredientService {
         'Content-Type':  'application/json'
       })
     };
-    return this.http.get<Ingredient[]>(BACKEND_URL + '/ingredients', httpOptions);
+    return this.http.get<Ingredient[]>(this.apiURL + '/ingredients', httpOptions);
   }
 
   getIngredientsFromNameLike(name: string): Observable<Ingredient[]> {
@@ -43,7 +47,7 @@ export class IngredientService {
         'Content-Type':  'application/json'
       })
     };
-    return this.http.get<Ingredient[]>(BACKEND_URL + '/find_ingredient_name_like/'+name, httpOptions);
+    return this.http.get<Ingredient[]>(this.apiURL + '/find_ingredient_name_like/'+name, httpOptions);
   }
 
   // Delete operation
@@ -71,7 +75,7 @@ export class IngredientService {
         image: "description"
       }
     })
-    this.http.post<any>(BACKEND_URL + '/ingredients', ingredientList, httpOptions).subscribe(
+    this.http.post<any>(this.apiURL + '/ingredients', ingredientList, httpOptions).subscribe(
       () => {
         console.log('Data saved');
       }, error => {

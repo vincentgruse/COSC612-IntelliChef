@@ -5,18 +5,21 @@ import { HttpClient } from '@angular/common/http';
 import { FormGroup } from "@angular/forms";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PopupService {
-  private apiURL = 'http://localhost:8000';
+  private apiURL = '';
   constructor(
     private dialog: MatDialog,
     private http: HttpClient,
     private router: Router,
     private toastrService: ToastrService
-  ) { }
+  ) {
+    this.apiURL = environment.apiUrl
+  }
 
   openSignInPopup() {
     this.dialog.open(SignInComponent);

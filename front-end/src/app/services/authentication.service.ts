@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs'; // Import BehaviorSubject
 import {Router} from "@angular/router";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class AuthenticationService {
     private router: Router
   ) {
     this.refreshAuthDetails();
+    this.apiURL = environment.apiUrl
   }
 
   private refreshAuthDetails() {
